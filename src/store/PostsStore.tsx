@@ -47,8 +47,8 @@ export interface IPosts {
   }
   
   export interface Datum {
-    userId: number;
-    id: number;
+    userId: any;
+    id: string;
     title: string;
     body: string;
   }

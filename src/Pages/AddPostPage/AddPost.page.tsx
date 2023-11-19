@@ -4,12 +4,13 @@ import useStore from "../../Hooks/UseStore";
 import { addPost } from "../../utils/functions";
 import { observer } from "mobx-react-lite";
 import { Datum } from "../../store/PostsStore";
+import {v4 as uuid} from 'uuid'
 
 const AddPost = observer(() => {
   const {
     rootStore: { postsStore },
   } = useStore();
-  const [userId, setUserId] = useState();
+  const [userId, setUserId] = useState('');
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -23,19 +24,20 @@ const AddPost = observer(() => {
     setContent(e.target.value);
   };
   
-  let posts: Datum[] = postsStore.getPosts
-  console.log(posts)
+  let posts: Datum[] = postsStore.getPosts;
+  console.log(posts, 'all posts')
 
   const handleSubmit = async() => {
     const data = {
+      id: uuid,
       userId: userId,
       title: title,
       content: content,
-    };
+    }; 
 
     const response = await addPost(data);
-    console.log(response.data)
-
+    posts.push(response.data);
+    console.log(posts, 'post')
   };
 
   return (

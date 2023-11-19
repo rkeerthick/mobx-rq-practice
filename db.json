@@ -1,0 +1,29 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "Post Title",
+            "body": "This is the post body."
+        },
+        {
+            "id": 2,
+            "title": "loar madkj",
+            "body": "hqw wieru alkjdfa qiw eqka."
+        },
+        {
+            "id": 3,
+            "title": "yowur akdjaj",
+            "body": "Hellow kjrkqm akjdak kadfsa."
+        },
+        {
+            "id": 4,
+            "title": "uio akdj aua kjd",
+            "body": "yowerkd ajfakfjak kasfsa aisdfjak akdajf aakdjalj."
+        },
+        {
+            "id": 5,
+            "title": "youe djfak jkaj",
+            "body": "Tom ahoar adoa ja ld."
+        }
+    ]
+}
