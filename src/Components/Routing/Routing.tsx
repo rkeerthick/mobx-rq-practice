@@ -7,6 +7,7 @@ const Routing = () => {
     <Routes>
       <Route path="/" element={<Posts />} />
       <Route path="/addpost" element={<AddPost />} />
+      <Route path="/addpost/:id" element={<AddPost />} />
     </Routes>
   );
 };

@@ -3,10 +3,16 @@ import Post from "../../Components/Post/Post";
 import UseGetPosts from "../../Hooks/useGetPosts";
 import useStore from "../../Hooks/UseStore";
 import { map } from "lodash";
+import { useEffect, useState } from "react";
 
 const PostsContainer = () => {
-  let result = UseGetPosts();
-
+  let result: any;
+  const [reload, setReload] = useState(false)
+  
+  const handleReload = () => {
+    setReload(prev => !prev)
+  }
+  result = UseGetPosts();
   console.log(result, 'response')
   const {
     rootStore: { postsStore },
