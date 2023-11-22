@@ -18,7 +18,7 @@ const PostsContainer = () => {
   return (
     <div className="posts-container">
       {map(postsStore.getPosts, (post) => (
-        <Post key={post.id} title={post.title} content={post.content} />
+        <Post key={post.id} id={post.id} title={post.title} content={post.content} />
       ))}
     </div>
   );

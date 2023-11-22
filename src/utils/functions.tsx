@@ -10,6 +10,11 @@ export const addPost = (data: {}) => {
   return response;
 };
 
+export const deletePost = (id: string) => {
+  const response = axios.delete(`http://localhost:4001/posts/${id}`);
+  return response;
+};
+
 export const fetchPostByID = (id: number) => {
   const response = axios.get(`http://localhost:4001/posts/${id}`);
   return response;
