@@ -1,5 +1,6 @@
 import { computed, makeObservable, observable } from "mobx";
 import { IRootStore } from "./RootStore";
+import {} from 'react-query'
 
 export interface IPosts {
     data: Datum[];
@@ -50,7 +51,7 @@ export interface IPosts {
     userId: any;
     id: string;
     title: string;
-    body: string;
+    content: string;
   }
 
 export class PostsStore {

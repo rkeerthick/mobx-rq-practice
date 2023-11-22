@@ -6,6 +6,8 @@ import { map } from "lodash";
 
 const PostsContainer = () => {
   let result = UseGetPosts();
+
+  console.log(result, 'response')
   const {
     rootStore: { postsStore },
   } = useStore();
@@ -16,7 +18,7 @@ const PostsContainer = () => {
   return (
     <div className="posts-container">
       {map(postsStore.getPosts, (post) => (
-        <Post key={post.id} title={post.title} body={post.body} />
+        <Post key={post.id} title={post.title} content={post.content} />
       ))}
     </div>
   );

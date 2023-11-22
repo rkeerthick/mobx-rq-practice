@@ -2,10 +2,10 @@ import './Post.scss'
 
 type IPost = {
   title: string,
-  body: string
+  content: string
 }
 
-const Post = ({title, body}: IPost) => {
+const Post = ({title, content}: IPost) => {
   return (
     <div className="post">
         <div className="post__container">
@@ -14,7 +14,7 @@ const Post = ({title, body}: IPost) => {
             <button>Delete</button>
           </div>
             <h2>{title}</h2>
-            <h4>{body}</h4>
+            <h4>{content}</h4>
         </div>
     </div>
   )
