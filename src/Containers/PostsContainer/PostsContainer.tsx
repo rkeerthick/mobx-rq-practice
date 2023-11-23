@@ -5,26 +5,40 @@ import useStore from "../../Hooks/UseStore";
 import { map } from "lodash";
 import { useEffect, useState } from "react";
 
-const PostsContainer = () => {
+export interface IPost {
+  data: any,
+  isLoading: boolean, 
+  isFetching: boolean,
+  isError: boolean, 
+  error: unknown
+}
+
+const PostsContainer = ({data, isLoading, isFetching, isError, error}: IPost) => {
   let result: any;
-  const [reload, setReload] = useState(false)
-  
-  const handleReload = () => {
-    setReload(prev => !prev)
-  }
+  const [reload, setReload] = useState(false);
+
+  console.log(data, 'data')
+
   result = UseGetPosts();
-  console.log(result, 'response')
+  console.log(result, "response");
   const {
     rootStore: { postsStore },
   } = useStore();
-  postsStore.setPosts(result?.data?.data);
-  if (result?.isLoading || result?.isFetching) {
+  // postsStore.setPosts(result?.data?.data);
+  debugger;
+  postsStore.setPosts(data);
+  if (isLoading || isFetching) {
     return <h1>Loading</h1>;
   }
   return (
     <div className="posts-container">
       {map(postsStore.getPosts, (post) => (
-        <Post key={post.id} id={post.id} title={post.title} content={post.content} />
+        <Post
+          key={post.id}
+          id={post.id}
+          title={post.title}
+          content={post.content}
+        />
       ))}
     </div>
   );

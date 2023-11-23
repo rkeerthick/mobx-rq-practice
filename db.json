@@ -6,9 +6,9 @@
       "content": "This is the post content."
     },
     {
-      "id": 2,
-      "title": "loar madkj",
-      "content": "hqw wieru alkjdfa qiw eqka."
+      "title": "loar madkj karan",
+      "content": "hqw wieru alkjdfa qiw eqka.",
+      "id": 2
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
     },
     {
       "title": "hello",
-      "content": "India",
+      "content": "world",
       "id": 6
     },
     {
