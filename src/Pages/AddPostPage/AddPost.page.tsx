@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 import "./AddPost.scss";
 import useStore from "../../Hooks/UseStore";
-// import { addPost } from "../../utils/functions";
 import { observer } from "mobx-react-lite";
-import { Datum } from "../../store/PostsStore";
 import { v4 as uuid } from "uuid";
 import { useNavigate, useParams } from "react-router-dom";
-import useAddPost from "../../Hooks/useAddPost";
-import { useQuery } from "react-query";
-import { fetchPostByID } from "../../utils/functions";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { fetchPostByID, addPost, updatePost } from "../../utils/functions";
 
 const AddPost = observer(() => {
   const { id } = useParams();
 
+  const queryClient = useQueryClient();
+
   const ID: number = id ? +id : 0;
-  
+
   const {
     rootStore: { postsStore },
   } = useStore();
@@ -26,10 +25,9 @@ const AddPost = observer(() => {
 
   console.log(data, "data");
 
-  const { mutate } = useAddPost();
+  // const { mutate: addPost } = useAddPost();
 
   useEffect(() => {
-    
     let dervTitle = "";
     let dervContent = "";
     console.log(data?.data?.title, "title");
@@ -54,8 +52,29 @@ const AddPost = observer(() => {
     setContent(e.target.value);
   };
 
-  let posts: Datum[] = postsStore.getPosts;
-  console.log(posts, "all posts");
+  const addMutation = useMutation((data: {}) => addPost(data));
+
+  const handleAddItem = async (data: {}) => {
+    try {
+      await addMutation.mutateAsync(data);
+    } catch (error: any) {
+      console.error("Error adding item:", error.message);
+    }
+  };
+
+  const updateMutation = useMutation((data: {}) => {
+    const response = updatePost(ID, data);
+
+    return response;
+  });
+
+  const handleUpdateItem = async (data: {}) => {
+    try {
+      await updateMutation.mutateAsync(data);
+    } catch (error: any) {
+      console.error("Error updating item:", error.message);
+    }
+  };
 
   const handleSubmit = () => {
     const data = {
@@ -63,43 +82,50 @@ const AddPost = observer(() => {
       title: title,
       content: content,
     };
-
-    mutate(data);
+    if (ID > 0) {
+      handleUpdateItem(data);
+    } else {
+      handleAddItem(data);
+    }
     navigate("/");
-
   };
 
   return (
-    <div className="add-post">
-      <div className="add-post__container">
+    <>
+      {isLoading || (isFetching && <h1>Loading...</h1>)}
+      {isFetched && (
         <>
-          <span className="add-post__container__title">Add Post</span>
-          <form>
-            <div className="add-post__container__input">
-              <label htmlFor="">Title</label>
-              <input
-                type="text"
-                placeholder="Title"
-                value={title}
-                onChange={handleTitle}
-              />
+          <div className="add-post">
+            <div className="add-post__container">
+              <span className="add-post__container__title">Add Post</span>
+              <form>
+                <div className="add-post__container__input">
+                  <label htmlFor="">Title</label>
+                  <input
+                    type="text"
+                    placeholder="Title"
+                    value={title}
+                    onChange={handleTitle}
+                  />
+                </div>
+                <div className="add-post__container__input">
+                  <label htmlFor="">Description</label>
+                  <textarea
+                    placeholder="Content"
+                    rows={6}
+                    value={content}
+                    onChange={handleContent}
+                  />
+                </div>
+                <button type="button" onClick={handleSubmit}>
+                  Add
+                </button>
+              </form>
             </div>
-            <div className="add-post__container__input">
-              <label htmlFor="">Description</label>
-              <textarea
-                placeholder="Content"
-                rows={6}
-                value={content}
-                onChange={handleContent}
-              />
-            </div>
-            <button type="button" onClick={handleSubmit}>
-              Add
-            </button>
-          </form>
+          </div>
         </>
-      </div>
-    </div>
+      )}
+    </>
   );
 });
 

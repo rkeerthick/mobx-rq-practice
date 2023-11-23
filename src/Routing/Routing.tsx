@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Posts from "../../Pages/PostsPage/Posts.page";
-import AddPost from "../../Pages/AddPostPage/AddPost.page";
+import Posts from "../Pages/PostsPage/Posts.page";
+import AddPost from "../Pages/AddPostPage/AddPost.page";
 
 const Routing = () => {
   return (

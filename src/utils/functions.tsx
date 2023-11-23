@@ -15,6 +15,11 @@ export const deletePost = (id: string) => {
   return response;
 };
 
+export const updatePost = (ID: number, data: {}) => {
+  const response = axios.put(`http://localhost:3939/posts/${ID}`, data);
+  return response;
+};
+
 export const fetchPostByID = (id: number) => {
   const response = axios.get(`http://localhost:3939/posts/${id}`);
   return response;
