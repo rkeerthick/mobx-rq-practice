@@ -1,18 +1,10 @@
 import PostsContainer from "../../Containers/PostsContainer/PostsContainer";
 import SearchBar from "../../Components/SearchBar/SearchBar";
+import { useQueryClient } from "@tanstack/react-query";
 import UseGetPosts from "../../Hooks/useGetPosts";
-import { useEffect, useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchPosts } from "../../utils/functions";
 
 const Posts = () => {
-  const queryClient = useQueryClient();
-  const { data, isLoading, isFetching, isError, error } = useQuery({
-    queryKey: ["Fetched Data"],
-    queryFn: fetchPosts,
-    // { refetchOnWindowFocus: true }
-  }
-  );
+  const { data, isLoading, isFetching, isError, error } = UseGetPosts();
   return (
     <>
       <SearchBar />

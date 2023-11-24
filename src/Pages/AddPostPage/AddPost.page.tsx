@@ -10,7 +10,6 @@ import {
   fetchPostByID,
   addPost,
   updatePost,
-  fetchPosts,
 } from "../../utils/functions";
 
 const AddPost = observer(() => {
@@ -27,21 +26,16 @@ const AddPost = observer(() => {
   let query: any;
   if (ID > 0) {
     condiion = true;
-    // const { data: data, isFetched, isLoading, isFetching } = useQuery({
     query = useQuery({
       queryKey: ["post-detail ", id],
       queryFn: () => fetchPostByID(ID),
     });
   }
 
-  // console.log(data, "data");
-
-  // const { mutate: addPost } = useAddPost();
-
   useEffect(() => {
     let dervTitle = "";
     let dervContent = "";
-    // console.log(data?.data?.title "title");
+    
     if (condiion && ID > 0) {
       dervTitle = query?.data?.data?.title;
       dervContent = query?.data?.data?.content;
@@ -67,11 +61,7 @@ const AddPost = observer(() => {
     mutationKey: ["addPost"],
     mutationFn: (data: {}) => addPost(data),
     onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ["Fetched Data"] }),
-  });
-  const { refetch } = useQuery({
-    queryKey: ["reloaded data"],
-    queryFn: fetchPosts,
+      queryClient.invalidateQueries({ queryKey: ["unique posts"] }),
   });
 
   const handleAddItem = async (data: {}) => {
@@ -89,7 +79,7 @@ const AddPost = observer(() => {
       return response;
     },
     onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ["Fetched Data"] }),
+      queryClient.invalidateQueries({ queryKey: ["unique posts"] }),
   });
 
   const handleUpdateItem = async (data: {}) => {
@@ -98,7 +88,6 @@ const AddPost = observer(() => {
     } catch (error: any) {
       console.error("Error updating item:", error.message);
     }
-    refetch();
   };
 
   const handleSubmit = () => {

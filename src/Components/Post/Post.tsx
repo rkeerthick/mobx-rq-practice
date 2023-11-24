@@ -15,9 +15,8 @@ const Post = ({ id, title, content }: IPost) => {
 
   const deleteMutation = useMutation({
     mutationFn: (id: string) => deletePost(id),
-
     onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ["Fetched Data"] }),
+      queryClient.invalidateQueries({ queryKey: ["unique posts"] }),
   });
 
   const handleDeletePost = async (id: string) => {
