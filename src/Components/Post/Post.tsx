@@ -1,6 +1,7 @@
 import "./Post.scss";
-import useDeletePost from "../../Hooks/useDeletePost";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+import { deletePost } from "../../utils/functions";
 
 type IPost = {
   id: string;
@@ -9,14 +10,20 @@ type IPost = {
 };
 
 const Post = ({ id, title, content }: IPost) => {
-  const { mutate } = useDeletePost();
   const navigate = useNavigate();
-  const deletePost = (id: string) => {
+
+  const deleteMutation = useMutation((id: string) => deletePost(id));
+
+  const handleDeletePost = async (id: string) => {
     console.log(id, "delete id");
-    mutate(id);
+    try {
+      await deleteMutation.mutateAsync(id);
+    } catch (error: any) {
+      console.error("Error adding item:", error.message);
+    }
   };
 
-  const editPost = (id: string) => {
+  const handleEditPost = (id: string) => {
     navigate(`/addpost/${id}`);
     console.log(id);
   };
@@ -25,10 +32,10 @@ const Post = ({ id, title, content }: IPost) => {
     <div className="post">
       <div className="post__container">
         <div className="post__container__header">
-          <button type="button" onClick={() => editPost(id)}>
+          <button type="button" onClick={() => handleEditPost(id)}>
             Edit
           </button>
-          <button type="button" onClick={() => deletePost(id)}>
+          <button type="button" onClick={() => handleDeletePost(id)}>
             Delete
           </button>
         </div>

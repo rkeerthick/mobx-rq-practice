@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 import { v4 as uuid } from "uuid";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { fetchPostByID, addPost, updatePost } from "../../utils/functions";
+import { fetchPostByID, addPost, updatePost, fetchPosts } from "../../utils/functions";
 
 const AddPost = observer(() => {
   const { id } = useParams();
@@ -20,6 +20,7 @@ const AddPost = observer(() => {
 
   const { data, isFetched, isLoading, isFetching } = useQuery(
     ["post-detail ", id],
+
     () => fetchPostByID(ID)
   );
 
@@ -53,6 +54,7 @@ const AddPost = observer(() => {
   };
 
   const addMutation = useMutation((data: {}) => addPost(data));
+  const {refetch} = useQuery('reloaded data', fetchPosts);
 
   const handleAddItem = async (data: {}) => {
     try {
@@ -60,11 +62,11 @@ const AddPost = observer(() => {
     } catch (error: any) {
       console.error("Error adding item:", error.message);
     }
+    refetch();
   };
 
   const updateMutation = useMutation((data: {}) => {
     const response = updatePost(ID, data);
-
     return response;
   });
 
@@ -74,6 +76,7 @@ const AddPost = observer(() => {
     } catch (error: any) {
       console.error("Error updating item:", error.message);
     }
+    refetch();
   };
 
   const handleSubmit = () => {
@@ -83,6 +86,7 @@ const AddPost = observer(() => {
       content: content,
     };
     if (ID > 0) {
+      console.log("updating ", ID);
       handleUpdateItem(data);
     } else {
       handleAddItem(data);
@@ -92,7 +96,7 @@ const AddPost = observer(() => {
 
   return (
     <>
-      {isLoading || (isFetching && <h1>Loading...</h1>)}
+      {(isLoading || isFetching) && <h1>Loading...</h1>}
       {isFetched && (
         <>
           <div className="add-post">

@@ -15,8 +15,8 @@ export const deletePost = (id: string) => {
   return response;
 };
 
-export const updatePost = (ID: number, data: {}) => {
-  const response = axios.put(`http://localhost:3939/posts/${ID}`, data);
+export const updatePost = async(ID: number, data: {}) => {
+  const response = await axios.put(`http://localhost:3939/posts/${ID}`, data);
   return response;
 };
 
