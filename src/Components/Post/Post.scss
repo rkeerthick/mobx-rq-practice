@@ -1,14 +1,14 @@
 .post {
-    width: 900px;
-    background-color: rgb(144, 147, 147);
-    border-radius: 8px;
-    margin-bottom: 30px;
-    padding: 20px 0px;
-    &__container{
-        padding: 5px 20px;
-        &__header {
-            display: flex;
-             gap: 10px;
-        }
+  width: 900px;
+  background-color: rgb(144, 147, 147);
+  border-radius: 8px;
+  margin-bottom: 30px;
+  padding: 20px 0px;
+  &__container {
+    padding: 5px 20px;
+    &__header {
+      display: flex;
+      gap: 10px;
     }
+  }
 }

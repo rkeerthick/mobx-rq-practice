@@ -1,4 +1,5 @@
 import { IInput } from "../../Types";
+import './Input.scss'
 
 const Input = ({ title, type, value, onChange, placeholder }: IInput) => {
   return (
