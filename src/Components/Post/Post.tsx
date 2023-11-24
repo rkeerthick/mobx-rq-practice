@@ -1,6 +1,6 @@
 import "./Post.scss";
 import { useNavigate } from "react-router-dom";
-import { useMutation } from "react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { deletePost } from "../../utils/functions";
 
 type IPost = {
@@ -11,8 +11,14 @@ type IPost = {
 
 const Post = ({ id, title, content }: IPost) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  const deleteMutation = useMutation((id: string) => deletePost(id));
+  const deleteMutation = useMutation({
+    mutationFn: (id: string) => deletePost(id),
+
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["Fetched Data"] }),
+  });
 
   const handleDeletePost = async (id: string) => {
     console.log(id, "delete id");

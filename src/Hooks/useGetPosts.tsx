@@ -1,8 +1,8 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { fetchPosts } from "../utils/functions";
 
 const UseGetPosts = () => {
-  return useQuery("unique posts", fetchPosts);
+  return useQuery({ queryKey: ["unique posts"], queryFn: fetchPosts });
 };
 
 export default UseGetPosts;

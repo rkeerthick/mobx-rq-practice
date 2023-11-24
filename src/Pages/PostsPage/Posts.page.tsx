@@ -2,18 +2,17 @@ import PostsContainer from "../../Containers/PostsContainer/PostsContainer";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import UseGetPosts from "../../Hooks/useGetPosts";
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchPosts } from "../../utils/functions";
 
 const Posts = () => {
-  const { data, isLoading, isFetching, isError, error } = useQuery(
-    "Fetched Data",
-    fetchPosts,
+  const queryClient = useQueryClient();
+  const { data, isLoading, isFetching, isError, error } = useQuery({
+    queryKey: ["Fetched Data"],
+    queryFn: fetchPosts,
     // { refetchOnWindowFocus: true }
+  }
   );
-  useEffect(() => {
-    console.log(data?.data, 'data')
-  }, []);
   return (
     <>
       <SearchBar />

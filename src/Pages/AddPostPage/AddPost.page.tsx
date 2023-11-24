@@ -4,8 +4,14 @@ import useStore from "../../Hooks/UseStore";
 import { observer } from "mobx-react-lite";
 import { v4 as uuid } from "uuid";
 import { useNavigate, useParams } from "react-router-dom";
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { fetchPostByID, addPost, updatePost, fetchPosts } from "../../utils/functions";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+import {
+  fetchPostByID,
+  addPost,
+  updatePost,
+  fetchPosts,
+} from "../../utils/functions";
 
 const AddPost = observer(() => {
   const { id } = useParams();
@@ -17,21 +23,21 @@ const AddPost = observer(() => {
   const {
     rootStore: { postsStore },
   } = useStore();
+  
+    const { data: data, isFetched, isLoading, isFetching } = useQuery({
+      queryKey: ["post-detail ", id],
+      queryFn: () => fetchPostByID(ID),
+    });
+  
 
-  const { data, isFetched, isLoading, isFetching } = useQuery(
-    ["post-detail ", id],
-
-    () => fetchPostByID(ID)
-  );
-
-  console.log(data, "data");
+  // console.log(data, "data");
 
   // const { mutate: addPost } = useAddPost();
 
   useEffect(() => {
     let dervTitle = "";
     let dervContent = "";
-    console.log(data?.data?.title, "title");
+    // console.log(data?.data?.title "title");
     if (ID > 0) {
       dervTitle = data?.data?.title;
       dervContent = data?.data?.content;
@@ -53,8 +59,16 @@ const AddPost = observer(() => {
     setContent(e.target.value);
   };
 
-  const addMutation = useMutation((data: {}) => addPost(data));
-  const {refetch} = useQuery('reloaded data', fetchPosts);
+  const addMutation = useMutation({
+    mutationKey: ["addPost"],
+    mutationFn: (data: {}) => addPost(data),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["Fetched Data"] }),
+  });
+  const { refetch } = useQuery({
+    queryKey: ["reloaded data"],
+    queryFn: fetchPosts,
+  });
 
   const handleAddItem = async (data: {}) => {
     try {
@@ -62,12 +76,16 @@ const AddPost = observer(() => {
     } catch (error: any) {
       console.error("Error adding item:", error.message);
     }
-    refetch();
   };
 
-  const updateMutation = useMutation((data: {}) => {
-    const response = updatePost(ID, data);
-    return response;
+  const updateMutation = useMutation({
+    mutationKey: ["update"],
+    mutationFn: (data: {}) => {
+      const response = updatePost(ID, data);
+      return response;
+    },
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["Fetched Data"] }),
   });
 
   const handleUpdateItem = async (data: {}) => {
