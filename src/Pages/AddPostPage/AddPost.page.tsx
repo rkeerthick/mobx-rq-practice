@@ -23,12 +23,16 @@ const AddPost = observer(() => {
   const {
     rootStore: { postsStore },
   } = useStore();
-  
-    const { data: data, isFetched, isLoading, isFetching } = useQuery({
+  let condiion: boolean = false;
+  let query: any;
+  if (ID > 0) {
+    condiion = true;
+    // const { data: data, isFetched, isLoading, isFetching } = useQuery({
+    query = useQuery({
       queryKey: ["post-detail ", id],
       queryFn: () => fetchPostByID(ID),
     });
-  
+  }
 
   // console.log(data, "data");
 
@@ -38,14 +42,14 @@ const AddPost = observer(() => {
     let dervTitle = "";
     let dervContent = "";
     // console.log(data?.data?.title "title");
-    if (ID > 0) {
-      dervTitle = data?.data?.title;
-      dervContent = data?.data?.content;
+    if (condiion && ID > 0) {
+      dervTitle = query?.data?.data?.title;
+      dervContent = query?.data?.data?.content;
       setTitle(dervTitle);
       setContent(dervContent);
     }
     console.log(dervContent, " ,", dervTitle, "dataas");
-  }, [data]);
+  }, [query?.data]);
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -112,41 +116,39 @@ const AddPost = observer(() => {
     navigate("/");
   };
 
+  {
+    (condiion && (query?.isLoading || query?.isFetching)) && <h1>Loading...</h1>;
+  }
   return (
     <>
-      {(isLoading || isFetching) && <h1>Loading...</h1>}
-      {isFetched && (
-        <>
-          <div className="add-post">
-            <div className="add-post__container">
-              <span className="add-post__container__title">Add Post</span>
-              <form>
-                <div className="add-post__container__input">
-                  <label htmlFor="">Title</label>
-                  <input
-                    type="text"
-                    placeholder="Title"
-                    value={title}
-                    onChange={handleTitle}
-                  />
-                </div>
-                <div className="add-post__container__input">
-                  <label htmlFor="">Description</label>
-                  <textarea
-                    placeholder="Content"
-                    rows={6}
-                    value={content}
-                    onChange={handleContent}
-                  />
-                </div>
-                <button type="button" onClick={handleSubmit}>
-                  Add
-                </button>
-              </form>
+      <div className="add-post">
+        <div className="add-post__container">
+          <span className="add-post__container__title">Add Post</span>
+          <form>
+            <div className="add-post__container__input">
+              <label htmlFor="">Title</label>
+              <input
+                type="text"
+                placeholder="Title"
+                value={title}
+                onChange={handleTitle}
+              />
             </div>
-          </div>
-        </>
-      )}
+            <div className="add-post__container__input">
+              <label htmlFor="">Description</label>
+              <textarea
+                placeholder="Content"
+                rows={6}
+                value={content}
+                onChange={handleContent}
+              />
+            </div>
+            <button type="button" onClick={handleSubmit}>
+              Add
+            </button>
+          </form>
+        </div>
+      </div>
     </>
   );
 });
