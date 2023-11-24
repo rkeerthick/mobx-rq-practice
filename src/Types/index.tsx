@@ -53,3 +53,11 @@ export interface post {
   title: string;
   content: string;
 }
+
+export interface AddUpdatePost {
+  id: number;
+}
+
+export interface Form {
+  formType: string
+}

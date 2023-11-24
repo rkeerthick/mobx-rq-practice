@@ -8,6 +8,8 @@ const Routing = () => {
       <Route path="/" element={<Posts />} />
       <Route path="/addpost" element={<AddPost />} />
       <Route path="/addpost/:id" element={<AddPost />} />
+      <Route path="/login" element={<AddPost />} />
+      <Route path="/signup" element={<AddPost />} />
     </Routes>
   );
 };
