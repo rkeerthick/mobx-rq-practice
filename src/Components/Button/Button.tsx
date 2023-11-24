@@ -1,9 +1,9 @@
-import React from "react";
+import './Button.scss'
 import { IButton } from "../../Types";
 
-const Button = ({ buttonType, handleClick, value }: IButton) => {
+const Button = ({ buttonType, handleClick, value, type }: IButton) => {
   return (
-    <button type={buttonType} onClick={handleClick}>
+    <button className={`${type}`} type={buttonType} onClick={handleClick}>
       {value}
     </button>
   );

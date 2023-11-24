@@ -18,6 +18,7 @@ const Header = () => {
           buttonType="button"
           value="Add Post"
           handleClick={handleAddClick}
+          type="secondary"
         />
       </div>
     </header>

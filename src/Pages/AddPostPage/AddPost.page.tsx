@@ -139,6 +139,7 @@ const AddPost = observer(() => {
               value={ID > 0 ? "Update" : "Add"}
               buttonType="button"
               handleClick={handleSubmit}
+              type="primary"
             />
           </form>
         </div>

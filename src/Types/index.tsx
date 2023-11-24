@@ -33,7 +33,6 @@ export interface ITextarea {
   onChange: any;
 }
 
-
 export interface IInput {
   title?: string;
   type: string;
@@ -43,13 +42,14 @@ export interface IInput {
 }
 
 export interface IButton {
-    value: string,
-    buttonType?: "button" | "submit" | undefined,
-    handleClick?: any
+  value: string;
+  buttonType?: "button" | "submit" | undefined;
+  handleClick?: any;
+  type: string;
 }
 
-export interface post  {
+export interface post {
   id: string;
   title: string;
   content: string;
-};
+}

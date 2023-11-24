@@ -38,12 +38,14 @@ const Post = ({ id, title, content }: post) => {
               value="Edit"
               buttonType="button"
               handleClick={() => handleEditPost(id)}
+              type="primary"
             />
 
             <Button
               value="Delete"
               buttonType="button"
               handleClick={() => handleDeletePost(id)}
+              type="primary"
             />
           </div>
           <h2>{title}</h2>
