@@ -1,11 +1,12 @@
 import axios from "axios";
+import { IData } from "../Types";
 
 export const fetchPosts = () => {
   const response = axios.get("http://localhost:3939/posts");
   return response;
 };
 
-export const addPost = (data: {}) => {
+export const addPost = (data: IData) => {
   const response = axios.post("http://localhost:3939/posts", data);
   return response;
 };
@@ -15,8 +16,8 @@ export const deletePost = (id: string) => {
   return response;
 };
 
-export const updatePost = async(ID: number, data: {}) => {
-  const response = await axios.put(`http://localhost:3939/posts/${ID}`, data);
+export const updatePost = async (id: number, data: IData) => {
+  const response = await axios.put(`http://localhost:3939/posts/${id}`, data);
   return response;
 };
 

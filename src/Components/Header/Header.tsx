@@ -13,7 +13,9 @@ const Header = () => {
     <header>
       <div className="header">
         <h1 onClick={handlePostClick}>Posts</h1>
-        <button type="button" onClick={handleAddClick}>Add Post</button>
+        <button type="button" onClick={handleAddClick}>
+          Add Post
+        </button>
       </div>
     </header>
   );

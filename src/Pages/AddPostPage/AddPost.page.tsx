@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react";
 import "./AddPost.scss";
+import { useEffect, useState } from "react";
 import useStore from "../../Hooks/UseStore";
 import { observer } from "mobx-react-lite";
 import { v4 as uuid } from "uuid";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-import {
-  fetchPostByID,
-  addPost,
-  updatePost,
-} from "../../utils/functions";
+import { fetchPostByID, addPost, updatePost } from "../../utils/functions";
+import { IData } from "../../Types";
 
 const AddPost = observer(() => {
   const { id } = useParams();
@@ -35,7 +31,7 @@ const AddPost = observer(() => {
   useEffect(() => {
     let dervTitle = "";
     let dervContent = "";
-    
+
     if (condiion && ID > 0) {
       dervTitle = query?.data?.data?.title;
       dervContent = query?.data?.data?.content;
@@ -59,12 +55,12 @@ const AddPost = observer(() => {
 
   const addMutation = useMutation({
     mutationKey: ["addPost"],
-    mutationFn: (data: {}) => addPost(data),
+    mutationFn: (data: IData) => addPost(data),
     onSuccess: () =>
       queryClient.invalidateQueries({ queryKey: ["unique posts"] }),
   });
 
-  const handleAddItem = async (data: {}) => {
+  const handleAddItem = async (data: IData) => {
     try {
       await addMutation.mutateAsync(data);
     } catch (error: any) {
@@ -74,7 +70,7 @@ const AddPost = observer(() => {
 
   const updateMutation = useMutation({
     mutationKey: ["update"],
-    mutationFn: (data: {}) => {
+    mutationFn: (data: IData) => {
       const response = updatePost(ID, data);
       return response;
     },
@@ -82,7 +78,7 @@ const AddPost = observer(() => {
       queryClient.invalidateQueries({ queryKey: ["unique posts"] }),
   });
 
-  const handleUpdateItem = async (data: {}) => {
+  const handleUpdateItem = async (data: IData) => {
     try {
       await updateMutation.mutateAsync(data);
     } catch (error: any) {
@@ -95,7 +91,7 @@ const AddPost = observer(() => {
       id: uuid,
       title: title,
       content: content,
-    };
+    } as IData;
     if (ID > 0) {
       console.log("updating ", ID);
       handleUpdateItem(data);
@@ -106,7 +102,7 @@ const AddPost = observer(() => {
   };
 
   {
-    (condiion && (query?.isLoading || query?.isFetching)) && <h1>Loading...</h1>;
+    condiion && (query?.isLoading || query?.isFetching) && <h1>Loading...</h1>;
   }
   return (
     <>

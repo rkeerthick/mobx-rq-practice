@@ -2,14 +2,7 @@ import "./PostsContainer.scss";
 import Post from "../../Components/Post/Post";
 import useStore from "../../Hooks/UseStore";
 import { map } from "lodash";
-
-export interface IPost {
-  data: any;
-  isLoading: boolean;
-  isFetching: boolean;
-  isError: boolean;
-  error: unknown;
-}
+import { IPost } from "../../Types";
 
 const PostsContainer = ({
   data,
@@ -24,7 +17,6 @@ const PostsContainer = ({
   const {
     rootStore: { postsStore },
   } = useStore();
-  // postsStore.setPosts(result?.data?.data);
   debugger;
   postsStore.setPosts(data);
   if (isLoading || isFetching) {

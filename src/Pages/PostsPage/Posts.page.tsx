@@ -1,6 +1,5 @@
 import PostsContainer from "../../Containers/PostsContainer/PostsContainer";
 import SearchBar from "../../Components/SearchBar/SearchBar";
-import { useQueryClient } from "@tanstack/react-query";
 import UseGetPosts from "../../Hooks/useGetPosts";
 
 const Posts = () => {
