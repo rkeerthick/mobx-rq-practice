@@ -9,6 +9,7 @@ import { fetchPostByID, addPost, updatePost } from "../../utils/functions";
 import { IData } from "../../Types";
 import Input from "../../Components/Input/Input";
 import TextArea from "../../Components/TextArea/TextArea";
+import Button from "../../Components/Button/Button";
 
 const AddPost = observer(() => {
   const { id } = useParams();
@@ -134,9 +135,11 @@ const AddPost = observer(() => {
                 value={content}
               />
             </div>
-            <button type="button" onClick={handleSubmit}>
-              {ID > 0 ? "Update" : "Add"}
-            </button>
+            <Button
+              value={ID > 0 ? "Update" : "Add"}
+              buttonType="button"
+              handleClick={handleSubmit}
+            />
           </form>
         </div>
       </div>

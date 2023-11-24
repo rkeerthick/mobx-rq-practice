@@ -11,7 +11,6 @@ const PostsContainer = ({
   isError,
   error,
 }: IPost) => {
-  let result: any;
 
   console.log(data, "data");
   const {

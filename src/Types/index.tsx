@@ -35,9 +35,21 @@ export interface ITextarea {
 
 
 export interface IInput {
-  title: string;
+  title?: string;
   type: string;
   placeholder: string;
-  value: string;
-  onChange: any;
+  value?: string;
+  onChange?: any;
 }
+
+export interface IButton {
+    value: string,
+    buttonType?: "button" | "submit" | undefined,
+    handleClick?: any
+}
+
+export interface post  {
+  id: string;
+  title: string;
+  content: string;
+};

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./Header.scss";
+import Button from "../Button/Button";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -13,9 +14,11 @@ const Header = () => {
     <header>
       <div className="header">
         <h1 onClick={handlePostClick}>Posts</h1>
-        <button type="button" onClick={handleAddClick}>
-          Add Post
-        </button>
+        <Button
+          buttonType="button"
+          value="Add Post"
+          handleClick={handleAddClick}
+        />
       </div>
     </header>
   );
