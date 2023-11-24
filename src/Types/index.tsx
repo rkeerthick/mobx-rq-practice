@@ -25,3 +25,19 @@ export interface Datum {
   title: string;
   content: string;
 }
+export interface ITextarea {
+  title: string;
+  rows: number;
+  placeholder: string;
+  value: string;
+  onChange: any;
+}
+
+
+export interface IInput {
+  title: string;
+  type: string;
+  placeholder: string;
+  value: string;
+  onChange: any;
+}

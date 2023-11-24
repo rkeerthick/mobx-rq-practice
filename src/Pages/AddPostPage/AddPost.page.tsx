@@ -7,6 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchPostByID, addPost, updatePost } from "../../utils/functions";
 import { IData } from "../../Types";
+import Input from "../../Components/Input/Input";
+import TextArea from "../../Components/TextArea/TextArea";
 
 const AddPost = observer(() => {
   const { id } = useParams();
@@ -108,28 +110,32 @@ const AddPost = observer(() => {
     <>
       <div className="add-post">
         <div className="add-post__container">
-          <span className="add-post__container__title">Add Post</span>
+          <span className="add-post__container__title">
+            {" "}
+            {ID > 0 ? "Update" : "Add"}
+            Post
+          </span>
           <form>
             <div className="add-post__container__input">
-              <label htmlFor="">Title</label>
-              <input
+              <Input
+                title="Title"
                 type="text"
-                placeholder="Title"
                 value={title}
+                placeholder="Enter Title..."
                 onChange={handleTitle}
               />
             </div>
             <div className="add-post__container__input">
-              <label htmlFor="">Description</label>
-              <textarea
-                placeholder="Content"
+              <TextArea
+                title="Description"
                 rows={6}
-                value={content}
+                placeholder="Write here..."
                 onChange={handleContent}
+                value={content}
               />
             </div>
             <button type="button" onClick={handleSubmit}>
-              Add
+              {ID > 0 ? "Update" : "Add"}
             </button>
           </form>
         </div>
