@@ -59,5 +59,10 @@ export interface AddUpdatePost {
 }
 
 export interface Form {
-  formType: string
+  formType: string;
+}
+
+export interface IUser {
+  id: V4Options;
+  email: string;
 }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IData } from "../Types";
+import { IData, IUser } from "../Types";
 
 export const fetchPosts = () => {
   const response = axios.get("http://localhost:3939/posts");
@@ -23,5 +23,10 @@ export const updatePost = async (id: number, data: IData) => {
 
 export const fetchPostByID = (id: number) => {
   const response = axios.get(`http://localhost:3939/posts/${id}`);
+  return response;
+};
+
+export const addUser = (data: IUser) => {
+  const response = axios.post("http://localhost:3939/users", data);
   return response;
 };

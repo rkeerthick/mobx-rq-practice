@@ -6,9 +6,7 @@ import FormContainer from "../../Containers/FormContainer/FormContainer";
 const AddPost = observer(() => {
   const path = window.location.href.split('/')[3];
   const id = window.location.href.split('/')[4];
-
-  console.log(path, id, 'hielo')
-
+console.log(path, 'path')
   if(path === "login") {
     return <FormContainer formType={path} />
   }

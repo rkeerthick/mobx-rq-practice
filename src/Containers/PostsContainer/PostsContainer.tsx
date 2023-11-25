@@ -16,7 +16,6 @@ const PostsContainer = ({
   const {
     rootStore: { postsStore },
   } = useStore();
-  debugger;
   postsStore.setPosts(data);
   if (isLoading || isFetching) {
     return <h1>Loading</h1>;
