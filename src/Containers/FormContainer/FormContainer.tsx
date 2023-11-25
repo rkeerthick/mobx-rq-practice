@@ -6,13 +6,12 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { addUser } from "../../utils/functions";
 import { v4 as uuid } from "uuid";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const FormContainer = ({ formType }: Form) => {
-  console.log(formType, 'form type')
   useEffect(() => {setEmail('')}, [])
   const [email, setEmail] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleEmailChange = (e: any): void => {
     setEmail(e.target.value);
   };
@@ -31,7 +30,8 @@ const FormContainer = ({ formType }: Form) => {
     } catch (error: any) {
       console.log(error.message);
     }
-    navigate("/login");
+    // navigate("/login");
+    window.location.href = '/login';
   };
   return (
     <div className="add-post">
