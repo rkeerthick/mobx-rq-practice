@@ -66,3 +66,7 @@ export interface IUser {
   id: V4Options;
   email: string;
 }
+
+export interface search {
+  handleSearchText: any
+}

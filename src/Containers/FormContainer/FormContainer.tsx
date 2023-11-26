@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { addUser } from "../../utils/functions";
 import { v4 as uuid } from "uuid";
-import { userAlreadyExist, userPresent } from '../../Constant/functions';
+import { setState, userAlreadyExist, userPresent } from '../../Constant/functions';
 import { useNavigate } from "react-router-dom";
 import useGetUsers from '../../Hooks/useGetUsers';
 
@@ -14,9 +14,9 @@ const FormContainer = ({ formType }: Form) => {
   useEffect(() => {setEmail('')}, [])
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  const handleEmailChange = (e: any): void => {
-    setEmail(e.target.value);
-  };
+  // const handleEmailChange = (e: any): void => {
+  //   setEmail(e.target.value);
+  // };
   const addUserMutation = useMutation({
     mutationFn: (data: IUser) => {
       return addUser(data);
@@ -66,7 +66,8 @@ const FormContainer = ({ formType }: Form) => {
               title="Email ID"
               placeholder="example@gmail.com"
               value={email}
-              onChange={handleEmailChange}
+              // onChange={handleEmailChange}
+              onChange={(e: any) => setState(setEmail, e.target.value)}
             />
           </div>
           {formType === "login" && (

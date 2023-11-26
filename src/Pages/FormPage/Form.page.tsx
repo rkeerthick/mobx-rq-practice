@@ -3,14 +3,17 @@ import { observer } from "mobx-react-lite";
 import AddUpdatePostContainer from "../../Containers/AddUpdatePostContainer/AddUpdatePostContainer";
 import FormContainer from "../../Containers/FormContainer/FormContainer";
 import { useEffect, useState } from "react";
+import { setState } from "../../Constant/functions";
 
 const Form = observer(() => {
   const [path, setPath] = useState('');
   const [id, setId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    setPath(window.location.href.split('/')[3]);
-    setId(window.location.href.split('/')[4]);
+    setState(setPath, window.location.href.split('/')[3]);
+    setState(setId, window.location.href.split('/')[4]);
+    // setPath(window.location.href.split('/')[3]);
+    // setId(window.location.href.split('/')[4]);
   }, [path, id])
 
   if(path === "login") {

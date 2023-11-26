@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
 import Button from "../../Components/Button/Button";
 import Input from "../../Components/Input/Input";
@@ -7,26 +8,27 @@ import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { addPost, fetchPostByID, updatePost } from "../../utils/functions";
 import { v4 as uuid } from "uuid";
+import { setState } from "../../Constant/functions";
 
 const AddUpdatePostContainer = ({ id }: AddUpdatePost) => {
   const queryClient = useQueryClient();
-
-  let query: any;
-  if (id > 0) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    query = useQuery({
-      queryKey: ["post-detail ", id],
-      queryFn: () => fetchPostByID(id),
-    });
-  }
+  
+  const {
+    data: query,
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: ["post-detail ", id],
+    queryFn: () => fetchPostByID(id),
+  });
 
   useEffect(() => {
     let dervTitle = "";
     let dervContent = "";
 
     if (id > 0) {
-      dervTitle = query?.data?.data?.title;
-      dervContent = query?.data?.data?.content;
+      dervTitle = query?.data?.title;
+      dervContent = query?.data?.content;
       setTitle(dervTitle);
       setContent(dervContent);
     }
@@ -37,12 +39,12 @@ const AddUpdatePostContainer = ({ id }: AddUpdatePost) => {
 
   const navigate = useNavigate();
 
-  const handleTitle = (e: any) => {
-    setTitle(e.target.value);
-  };
-  const handleContent = (e: any) => {
-    setContent(e.target.value);
-  };
+  // const handleTitle = (e: any) => {
+  //   setTitle(e.target.value);
+  // };
+  // const handleContent = (e: any) => {
+  //   setContent(e.target.value);
+  // };
 
   const addMutation = useMutation({
     mutationKey: ["addPost"],
@@ -91,7 +93,7 @@ const AddUpdatePostContainer = ({ id }: AddUpdatePost) => {
     navigate("/");
   };
 
-  (query?.isLoading || query?.isFetching) && <h1>Loading...</h1>;
+  (isLoading || isFetching) && <h1>Loading...</h1>;
   return (
     <div className="add-post">
       <div className="add-post__container">
@@ -107,7 +109,8 @@ const AddUpdatePostContainer = ({ id }: AddUpdatePost) => {
               type="text"
               value={title}
               placeholder="Enter Title..."
-              onChange={handleTitle}
+              // onChange={handleTitle}
+              onChange={(e: any) => setState(setTitle, e.target.value)}
             />
           </div>
           <div className="add-post__container__input">
@@ -115,8 +118,9 @@ const AddUpdatePostContainer = ({ id }: AddUpdatePost) => {
               title="Description"
               rows={6}
               placeholder="Write here..."
-              onChange={handleContent}
               value={content}
+              // onChange={handleContent}
+              onChange={(e: any) => setState(setContent, e.target.value)}
             />
           </div>
           <Button
@@ -130,5 +134,4 @@ const AddUpdatePostContainer = ({ id }: AddUpdatePost) => {
     </div>
   );
 };
-
 export default AddUpdatePostContainer;
