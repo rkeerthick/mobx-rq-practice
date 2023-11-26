@@ -1,20 +1,18 @@
-import "./AddPost.scss";
+import "./Form.scss";
 import { observer } from "mobx-react-lite";
 import AddUpdatePostContainer from "../../Containers/AddUpdatePostContainer/AddUpdatePostContainer";
 import FormContainer from "../../Containers/FormContainer/FormContainer";
 import { useEffect, useState } from "react";
 
-const AddPost = observer(() => {
+const Form = observer(() => {
   const [path, setPath] = useState('');
   const [id, setId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    console.log("effect ", path, ' , ', id)
     setPath(window.location.href.split('/')[3]);
     setId(window.location.href.split('/')[4]);
   }, [path, id])
 
-console.log(path, 'path')
   if(path === "login") {
     return <FormContainer formType={path} />
   }
@@ -29,4 +27,4 @@ console.log(path, 'path')
   }
 })
 
-export default AddPost;
+export default Form;

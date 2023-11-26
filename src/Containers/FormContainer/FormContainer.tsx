@@ -38,7 +38,6 @@ const FormContainer = ({ formType }: Form) => {
         setEmail('');
       }
     } catch (error: any) {
-      console.log(error.message);
     }
     // navigate("/login");
   };

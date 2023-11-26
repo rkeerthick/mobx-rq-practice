@@ -17,7 +17,6 @@ const Post = ({ id, title, content }: post) => {
   });
 
   const handleDeletePost = async (id: string) => {
-    console.log(id, "delete id");
     try {
       await deleteMutation.mutateAsync(id);
     } catch (error: any) {
@@ -27,7 +26,6 @@ const Post = ({ id, title, content }: post) => {
 
     const handleEditPost = (id: string) => {
       navigate(`/addpost/${id}`);
-      console.log(id);
     };
 
     return (

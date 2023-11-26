@@ -30,7 +30,6 @@ const AddUpdatePostContainer = ({ id }: AddUpdatePost) => {
       setTitle(dervTitle);
       setContent(dervContent);
     }
-    console.log(dervContent, " ,", dervTitle, "dataas");
   }, [id, query?.data]);
 
   const [title, setTitle] = useState("");

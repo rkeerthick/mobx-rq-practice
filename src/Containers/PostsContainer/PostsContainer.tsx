@@ -12,7 +12,6 @@ const PostsContainer = ({
   error,
 }: IPost) => {
 
-  console.log(data, "data");
   const {
     rootStore: { postsStore },
   } = useStore();
