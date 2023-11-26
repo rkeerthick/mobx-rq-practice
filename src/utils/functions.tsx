@@ -30,3 +30,8 @@ export const addUser = (data: IUser) => {
   const response = axios.post("http://localhost:3939/users", data);
   return response;
 };
+
+export const fetchUsers = () => {
+  const response = axios.get("http://localhost:3939/users");
+  return response;
+};

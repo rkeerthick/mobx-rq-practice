@@ -6,12 +6,14 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { addUser } from "../../utils/functions";
 import { v4 as uuid } from "uuid";
-// import { useNavigate } from "react-router-dom";
+import { userAlreadyExist, userPresent } from '../../Constant/functions';
+import { useNavigate } from "react-router-dom";
+import useGetUsers from '../../Hooks/useGetUsers';
 
 const FormContainer = ({ formType }: Form) => {
   useEffect(() => {setEmail('')}, [])
   const [email, setEmail] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleEmailChange = (e: any): void => {
     setEmail(e.target.value);
   };
@@ -20,19 +22,38 @@ const FormContainer = ({ formType }: Form) => {
       return addUser(data);
     },
   });
+  const {data: users} = useGetUsers();
   const handleSignUp = async () => {
     const data = {
       id: uuid,
       email: email,
     } as IUser;
     try {
-      await addUserMutation.mutateAsync(data);
+      if(!userAlreadyExist(email, users?.data)){
+        await addUserMutation.mutateAsync(data);
+        window.location.href = '/login';
+      }
+      else {
+        alert("Email ID already exists!!!")
+        setEmail('');
+      }
     } catch (error: any) {
       console.log(error.message);
     }
     // navigate("/login");
-    window.location.href = '/login';
   };
+  const handleLogin = () => {
+    if(userPresent(email, users?.data)) {
+      navigate('/')
+    }
+    else {
+      alert("No such user is present");
+      setEmail('');
+    }
+  }
+
+
+
   return (
     <div className="add-post">
       <div className="add-post__container">
@@ -51,7 +72,7 @@ const FormContainer = ({ formType }: Form) => {
           </div>
           {formType === "login" && (
             <>
-              <Button buttonType="button" value="Login" type="primary" />
+              <Button buttonType="button" value="Login" type="primary" handleClick={handleLogin} />
               <p>
                 Are you new??<a href="/signup">Sign Up</a>
               </p>
