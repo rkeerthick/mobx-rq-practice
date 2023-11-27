@@ -6,7 +6,7 @@ export interface IRootStore {
 }
 
 export interface IData {
-  id: V4Options;
+    id: V4Options;
   title: string;
   content: string;
 }
@@ -68,5 +68,5 @@ export interface IUser {
 }
 
 export interface search {
-  handleSearchText: any
+  handleSearchText: any;
 }

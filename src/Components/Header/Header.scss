@@ -18,7 +18,12 @@ header {
     &__container {
       display: flex;
       justify-content: flex-end;
+      align-items: center;
       gap: 20px;
+
+      button {
+        height: fit-content;
+      }
     }
   }
 }

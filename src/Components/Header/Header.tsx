@@ -19,6 +19,7 @@ const Header = () => {
   const handleAddClick = () => {
     navigate("/addpost");
   };
+    
   const handlePostClick = () => {
     navigate("/");
   };
@@ -26,9 +27,16 @@ const Header = () => {
   const handleLogin = () => {
     navigate("/login");
   };
+    
   const handleSignUp = () => {
     navigate("/signup");
   };
+    
+  const handleLogout = () => {
+    loginStore?.setLogoutUser();
+    navigate("/login");
+  };
+    
   return (
     <header>
       <div className="header">
@@ -40,6 +48,12 @@ const Header = () => {
               buttonType="button"
               value="Add Post"
               handleClick={handleAddClick}
+              type="secondary"
+            />
+            <Button
+              buttonType="button"
+              value="Logout"
+              handleClick={handleLogout}
               type="secondary"
             />
           </div>
