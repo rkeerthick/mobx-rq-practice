@@ -6,12 +6,13 @@ import TextArea from "../../Components/TextArea/TextArea";
 import { AddUpdatePost, IData } from "../../Types";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { addPost, fetchPostByID, updatePost } from "../../utils/functions";
+import { addPost, fetchPostByID, fetchUsersByEmail, updatePost } from "../../utils/functions";
 import { v4 as uuid } from "uuid";
 import { setState } from "../../Constant/functions";
 
-const AddUpdatePostContainer = ({ id }: AddUpdatePost) => {
+const AddUpdatePostContainer = ({ id, email, userID }: AddUpdatePost) => {
   const queryClient = useQueryClient();
+  console.log(userID, id, "details")
   
   const {
     data: query,
@@ -82,6 +83,7 @@ const AddUpdatePostContainer = ({ id }: AddUpdatePost) => {
   const handleSubmit = () => {
     const data = {
       id: uuid,
+      userId: userID,
       title: title,
       content: content,
     } as IData;

@@ -1,21 +1,28 @@
-import {useEffect} from 'react'
+import { useEffect } from "react";
 import Input from "../../Components/Input/Input";
 import Button from "../../Components/Button/Button";
 import { Form, IUser } from "../../Types";
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { addUser } from "../../utils/functions";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { addUser, fetchUsersByEmail } from "../../utils/functions";
 import { v4 as uuid } from "uuid";
-import { setState, userAlreadyExist, userPresent } from '../../Constant/functions';
+import {
+  setState,
+  userAlreadyExist,
+  userPresent,
+} from "../../Constant/functions";
 import { useNavigate } from "react-router-dom";
-import useGetUsers from '../../Hooks/useGetUsers';
-import useStore from '../../Hooks/UseStore';
+import useGetUsers from "../../Hooks/useGetUsers";
+import useStore from "../../Hooks/UseStore";
 
 const FormContainer = ({ formType }: Form) => {
-  const { rootStore: {loginStore} } = useStore();
+  const {
+    rootStore: { loginStore },
+  } = useStore();
 
-
-  useEffect(() => {setEmail('')}, [])
+  useEffect(() => {
+    setEmail("");
+  }, []);
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   // const handleEmailChange = (e: any): void => {
@@ -26,37 +33,31 @@ const FormContainer = ({ formType }: Form) => {
       return addUser(data);
     },
   });
-  const {data: users} = useGetUsers();
+  const { data: users } = useGetUsers();
   const handleSignUp = async () => {
     const data = {
-      id: uuid,
-      email: email,
+      email: email
     } as IUser;
     try {
-      if(!userAlreadyExist(email, users?.data)){
+      if (!userAlreadyExist(email, users?.data)) {
         await addUserMutation.mutateAsync(data);
-        window.location.href = '/login';
+        window.location.href = "/login";
+      } else {
+        alert("Email ID already exists!!!");
+        setEmail("");
       }
-      else {
-        alert("Email ID already exists!!!")
-        setEmail('');
-      }
-    } catch (error: any) {
-    }
+    } catch (error: any) {}
     // navigate("/login");
   };
   const handleLogin = () => {
     if (userPresent(email, users?.data)) {
       loginStore?.setLoginUser(email);
-      navigate('/')
-    }
-    else {
+      navigate("/");
+    } else {
       alert("No such user is present");
-      setEmail('');
+      setEmail("");
     }
-  }
-
-
+  };
 
   return (
     <div className="add-post">
@@ -77,7 +78,12 @@ const FormContainer = ({ formType }: Form) => {
           </div>
           {formType === "login" && (
             <>
-              <Button buttonType="button" value="Login" type="primary" handleClick={handleLogin} />
+              <Button
+                buttonType="button"
+                value="Login"
+                type="primary"
+                handleClick={handleLogin}
+              />
               <p>
                 Are you new??<a href="/signup">Sign Up</a>
               </p>

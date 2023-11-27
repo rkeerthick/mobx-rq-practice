@@ -1,4 +1,5 @@
-@import '../../Constant/colors.scss';
+@import '../../Constant/scss/colors.scss';
+@import '../../Constant/scss/function.scss';
 
 .post {
   width: 900px;
@@ -9,7 +10,7 @@
   &__container {
     padding: 5px 20px;
     &__header {
-      display: flex;
+      @include flex;
       gap: 10px;
     }
   }

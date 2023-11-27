@@ -1,4 +1,5 @@
-@import '../../Constant/colors.scss';
+@import '../../Constant/scss/colors.scss';
+@import '../../Constant/scss/function.scss';
 
 header {
   .header {
@@ -7,8 +8,7 @@ header {
     height: 50px;
     padding: 12px 8px;
 
-    display: flex;
-    align-items: center;
+    @include flex;
     justify-content: space-between;
 
     h1, button {
@@ -16,9 +16,8 @@ header {
     }
 
     &__container {
-      display: flex;
+      @include flex;
       justify-content: flex-end;
-      align-items: center;
       gap: 20px;
 
       button {

@@ -6,7 +6,8 @@ export interface IRootStore {
 }
 
 export interface IData {
-    id: V4Options;
+  id: V4Options;
+  userId: number;
   title: string;
   content: string;
 }
@@ -55,6 +56,8 @@ export interface post {
 }
 
 export interface AddUpdatePost {
+  userID?: number;
+  email?: string;
   id: number;
 }
 
@@ -63,7 +66,6 @@ export interface Form {
 }
 
 export interface IUser {
-  id: V4Options;
   email: string;
 }
 

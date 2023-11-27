@@ -2,51 +2,7 @@
   "users": [
     {
       "email": "a@mail.com",
-      "id": 1
-    },
-    {
-      "email": "b@mail.com",
       "id": 2
-    },
-    {
-      "email": "c@mail.com",
-      "id": 3
-    },
-    {
-      "email": "",
-      "id": 4
-    },
-    {
-      "email": "d@mail.com",
-      "id": 5
-    },
-    {
-      "email": "d@mail.com",
-      "id": 8
-    },
-    {
-      "email": "e@mail.com",
-      "id": 9
-    },
-    {
-      "email": "",
-      "id": 10
-    },
-    {
-      "email": "",
-      "id": 11
-    },
-    {
-      "email": "",
-      "id": 12
-    },
-    {
-      "email": "",
-      "id": 13
-    },
-    {
-      "email": "p@mail.com",
-      "id": 14
     }
   ],
   "posts": [
@@ -89,6 +45,18 @@
       "title": "How are",
       "content": "you\n",
       "id": 14
+    },
+    {
+      "userId": 0,
+      "title": "hello",
+      "content": "world",
+      "id": 15
+    },
+    {
+      "userId": 0,
+      "title": "How to perform",
+      "content": "Simple things",
+      "id": 16
     }
   ]
 }
