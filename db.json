@@ -7,6 +7,10 @@
     {
       "email": "b@mail.com",
       "id": 3
+    },
+    {
+      "email": "k@mail.com",
+      "id": 4
     }
   ],
   "posts": [
@@ -39,6 +43,12 @@
       "title": "ksajd kjsaf d",
       "content": "akjf akjsadlkjfaklj aslkj fklasjfalskjak",
       "id": 5
+    },
+    {
+      "userId": 4,
+      "title": "google",
+      "content": "dude...",
+      "id": 6
     }
   ]
 }
