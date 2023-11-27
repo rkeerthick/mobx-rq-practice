@@ -1,7 +1,9 @@
+@import '../../Constant/colors.scss';
+
 header {
   .header {
-    background-color: #30475e;
-    color: white;
+    background-color: $btn-primary;
+    color: $btn-primary-text;
     height: 50px;
     padding: 12px 8px;
 
@@ -11,6 +13,12 @@ header {
 
     h1, button {
       cursor: pointer;
+    }
+
+    &__container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
     }
   }
 }

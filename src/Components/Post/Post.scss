@@ -1,6 +1,8 @@
+@import '../../Constant/colors.scss';
+
 .post {
   width: 900px;
-  background-color: rgb(144, 147, 147);
+  background-color: $post-background;
   border-radius: 8px;
   margin-bottom: 30px;
   padding: 20px 0px;

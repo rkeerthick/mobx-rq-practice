@@ -1,3 +1,5 @@
+
+@import '../../Constant/colors.scss';
 button {
   width: max-content;
   padding: 8px 20px;
@@ -9,11 +11,11 @@ button {
 }
 
 .primary {
-  color: white;
-  background-color: #30475e;
+  color: $btn-primary-text;
+  background-color: $btn-primary;
 }
 
 .secondary {
-    background-color: wheat;
-    color: black;
+    background-color: $btn-secondary;
+    color: $btn-secondary-text;
 }

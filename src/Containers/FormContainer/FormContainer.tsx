@@ -9,8 +9,12 @@ import { v4 as uuid } from "uuid";
 import { setState, userAlreadyExist, userPresent } from '../../Constant/functions';
 import { useNavigate } from "react-router-dom";
 import useGetUsers from '../../Hooks/useGetUsers';
+import useStore from '../../Hooks/UseStore';
 
 const FormContainer = ({ formType }: Form) => {
+  const { rootStore: {loginStore} } = useStore();
+
+
   useEffect(() => {setEmail('')}, [])
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -42,7 +46,8 @@ const FormContainer = ({ formType }: Form) => {
     // navigate("/login");
   };
   const handleLogin = () => {
-    if(userPresent(email, users?.data)) {
+    if (userPresent(email, users?.data)) {
+      loginStore?.setLoginUser(email);
       navigate('/')
     }
     else {
