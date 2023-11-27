@@ -10,14 +10,15 @@ const Header = () => {
   const {
     rootStore: { loginStore },
   } = useStore();
-    
+
   const { data } = useQuery({
     queryKey: ["user details"],
     queryFn: () => fetchUsersByEmail(loginStore.getLoginUser),
   });
 
   const loggedInUserID = data?.data[0]?.id;
-  const loggedInEmail = data?.data[0]?.email;
+
+  loginStore.setUserID(loggedInUserID);
 
   const handleAddClick = () => {
     navigate("/addpost");
@@ -44,7 +45,7 @@ const Header = () => {
     <header>
       <div className="header">
         <h1 onClick={handlePostClick}>Posts</h1>
-        {loggedInEmail && (
+        {loginStore?.getLoginUser && (
           <div className="header__container">
             <h3>Hello, {loggedInUserID}</h3>
             <Button
@@ -61,7 +62,7 @@ const Header = () => {
             />
           </div>
         )}
-        {!loggedInEmail && (
+        {!loginStore?.getLoginUser && (
           <div className="header__container">
             <Button
               buttonType="button"

@@ -3,13 +3,22 @@ import SearchBar from "../../Components/SearchBar/SearchBar";
 import UseGetPosts from "../../Hooks/useGetPosts";
 import { useState } from "react";
 import { search, setState } from "../../Constant/functions";
+import { useQuery } from "@tanstack/react-query";
+import { fetchUsersByEmail } from "../../utils/functions";
+import useStore from "../../Hooks/UseStore";
 
 const Posts = () => {
   const { data: posts, isLoading, isFetching, isError, error } = UseGetPosts();
   const [searchText, setSearchText] = useState("");
-  // const handleSearchText = (data: string) => {
-  //   setSearchText(data);
-  // };
+  const {
+    rootStore: { loginStore },
+  } = useStore();
+
+  const { data } = useQuery({
+    queryKey: ["user details"],
+    queryFn: () => fetchUsersByEmail(loginStore.getLoginUser),
+  });
+  loginStore.setUserID(data?.data[0]?.id);
   let resultData = posts?.data;
   if (searchText.length > 0) {
     resultData = search(posts?.data, searchText);

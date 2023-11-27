@@ -3,60 +3,42 @@
     {
       "email": "a@mail.com",
       "id": 2
+    },
+    {
+      "email": "b@mail.com",
+      "id": 3
     }
   ],
   "posts": [
     {
-      "title": "Post Title...",
-      "content": "This is the post content.",
+      "userId": 2,
+      "title": "Heelo",
+      "content": "hi",
       "id": 1
     },
     {
-      "title": "loar madkj karan",
-      "content": "hqw wieru alkjdfa qiw eqka.....",
+      "userId": 2,
+      "title": "dkal kdjal",
+      "content": "akfjakl ajflkad alkjsdafa",
       "id": 2
     },
     {
-      "id": 3,
-      "title": "yowur akdjaj",
-      "content": "Hellow kjrkqm akjdak kadfsa."
+      "userId": 3,
+      "title": "kajdflka fdlkjkda klajdfkla jl",
+      "content": "aksfj daklj lkasjflakjfaklj fdlkj alkfasl fjdaklj ",
+      "id": 3
     },
     {
-      "id": 4,
-      "title": "uio akdj aua kjd",
-      "content": "yowerkd ajfakfjak kasfsa aisdfjak akdajf aakdjalj."
+      "userId": 3,
+      "title": "kajfd k ajk",
+      "content": "kasjfk jfdkaj akl;fj afj askljfd aklj ",
+      "id": 4
     },
     {
-      "title": "Good Morning",
-      "content": "Just Chill",
-      "id": 10
-    },
-    {
-      "title": "Pleasent",
-      "content": "Morning",
-      "id": 12
-    },
-    {
-      "title": "simple mind",
-      "content": "really...",
-      "id": 13
-    },
-    {
-      "title": "How are",
-      "content": "you\n",
-      "id": 14
-    },
-    {
-      "userId": 0,
-      "title": "hello",
-      "content": "world",
-      "id": 15
-    },
-    {
-      "userId": 0,
-      "title": "How to perform",
-      "content": "Simple things",
-      "id": 16
+      "userId": 2,
+      "title": "ksajd kjsaf d",
+      "content": "akjf akjsadlkjfaklj aslkj fklasjfalskjak",
+      "id": 5
     }
   ]
 }

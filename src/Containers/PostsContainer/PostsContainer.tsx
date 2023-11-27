@@ -11,24 +11,30 @@ const PostsContainer = ({
   isError,
   error,
 }: IPost) => {
-
   const {
-    rootStore: { postsStore },
+    rootStore: { postsStore, loginStore },
   } = useStore();
   postsStore.setPosts(data);
+  let result = data;
+  if (loginStore?.getUserID > 0) {
+    result = data?.filter((d: any) => d.userId !== loginStore?.getUserID);
+  }
+  console.log(result, "resulst");
   if (isLoading || isFetching) {
     return <h1>Loading</h1>;
   }
   return (
     <div className="posts-container">
-      {map(postsStore.getPosts, (post) => (
-        <Post
-          key={post.id}
-          id={post.id}
-          title={post.title}
-          content={post.content}
-        />
-      ))}
+      {
+        map(result, (post) => (
+          <Post
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            content={post.content}
+          />
+        ))
+      }
     </div>
   );
 };
