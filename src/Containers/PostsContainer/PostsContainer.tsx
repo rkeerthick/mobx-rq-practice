@@ -18,7 +18,7 @@ const PostsContainer = ({
     rootStore: { postsStore, loginStore },
   } = useStore();
   postsStore.setPosts(data);
-  let result;
+  let result = data;
   if (loginStore?.getUserID > 0) {
     result = data?.filter((d: any) => d.userId === loginStore?.getUserID);
   }
@@ -31,10 +31,11 @@ const PostsContainer = ({
   //     <img src={Loader} alt="" />;
   //   }, 3000);
   // }, []);
+
+  console.log(loginStore.getUserID, 'hello')
   return (
     <div className="posts-container">
-      {result.length === 0 && <img src={NoDataFound} alt="" />}
-      {result &&
+      {(loginStore.getUserID === undefined || result.length > 0) ?
         map(result, (post) => (
           <Post
             key={post.id}
@@ -42,7 +43,10 @@ const PostsContainer = ({
             title={post.title}
             content={post.content}
           />
-        ))}
+        )) :
+      (
+        <img src={NoDataFound} alt="" />
+      )}
     </div>
   );
 };
