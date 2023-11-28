@@ -8,17 +8,14 @@ header {
     height: 50px;
     padding: 12px 8px;
 
-    @include flex;
-    justify-content: space-between;
+    @include flex($justify-content: space-between);
 
     h1, button {
       cursor: pointer;
     }
 
     &__container {
-      @include flex;
-      justify-content: flex-end;
-      gap: 20px;
+      @include flex($justify-content: flex-end, $gap: 20px);
 
       button {
         height: fit-content;

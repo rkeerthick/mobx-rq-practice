@@ -1,5 +1,5 @@
-@import '../../Constant/scss/colors.scss';
-@import '../../Constant/scss/function.scss';
+@import "../../Constant/scss/colors.scss";
+@import "../../Constant/scss/function.scss";
 
 .post {
   width: 900px;
@@ -10,8 +10,19 @@
   &__container {
     padding: 5px 20px;
     &__header {
-      @include flex;
-      gap: 10px;
+      @include flex($gap: 10px);
+    }
+    &__footer {
+      @include flex($gap: 20px);
+      &__likes,
+      &__dislikes {
+        @include flex($flex-direction: column, $gap: 10px);
+      }
     }
   }
+}
+
+.like-icon,
+.dislike-icon {
+  font-size: 28px;
 }

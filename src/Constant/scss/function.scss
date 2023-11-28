@@ -1,4 +1,26 @@
-@mixin flex{
-    display: flex;
-    align-items: center;
+@mixin flex(
+  $align-item: center,
+  $justify-content: flex-start,
+  $flex-direction: row,
+  $flex-wrap: wrap,
+  $gap: 0px,
+  $row-gap: 0px
+) {
+  display: flex;
+  align-items: $align-item;
+  justify-content: $justify-content;
+  flex-direction: $flex-direction;
+  flex-wrap: $flex-wrap;
+  gap: $gap;
+  row-gap: $row-gap;
+}
+
+@mixin absolute(
+    $args...
+) {
+    position: absolute;
+    top: $args;
+    left: $args;
+    right: $args;
+    bottom: $args;
 }

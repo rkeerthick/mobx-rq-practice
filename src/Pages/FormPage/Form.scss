@@ -2,15 +2,14 @@
 @import "../../Constant/scss/function.scss";
 
 .add-post {
-  @include flex;
-  justify-content: center;
+  @include flex($justify-content: center);
   position: absolute;
   top: 26%;
   left: 37%;
+  // @include absolute(26%, 37%, 0%, 0%);
 
   &__container {
-    @include flex;
-    flex-direction: column;
+    @include flex($flex-direction: column);
     background-color: $form-background;
     padding: 50px 80px;
     border-radius: 8px;
@@ -21,16 +20,13 @@
       margin: 20px 0px;
     }
     form {
-      @include flex;
-      flex-direction: column;
+      @include flex($flex-direction: column);
       margin-top: 20px;
     }
 
     &__input {
-      @include flex;
-      flex-direction: column;
+      @include flex($flex-direction: column, $row-gap: 10px);
       margin-bottom: 20px;
-      row-gap: 10px;
 
       Input,
       TextArea {
