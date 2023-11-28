@@ -35,7 +35,7 @@ const PostsContainer = ({
   console.log(loginStore.getUserID, 'hello')
   return (
     <div className="posts-container">
-      {(loginStore.getUserID === undefined || result.length > 0) ?
+      {(data.length !== 0 && (result.length > 0 || loginStore.getUserID === undefined)) ?
         map(result, (post) => (
           <Post
             key={post.id}
