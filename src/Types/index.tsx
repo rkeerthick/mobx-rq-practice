@@ -58,8 +58,6 @@ export interface post {
 
 export interface AddUpdatePost {
   userID?: number;
-  email?: string;
-  id: number;
 }
 
 export interface Form {

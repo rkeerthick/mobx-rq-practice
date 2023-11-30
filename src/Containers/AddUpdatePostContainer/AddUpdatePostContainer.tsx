@@ -4,36 +4,40 @@ import Button from "../../Components/Button/Button";
 import Input from "../../Components/Input/Input";
 import TextArea from "../../Components/TextArea/TextArea";
 import { AddUpdatePost, IData } from "../../Types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { addPost, fetchPostByID, fetchUsersByEmail, updatePost } from "../../utils/functions";
 import { v4 as uuid } from "uuid";
 import { setState } from "../../Constant/functions";
 
-const AddUpdatePostContainer = ({ id, email, userID }: AddUpdatePost) => {
+const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
   const queryClient = useQueryClient();
-  console.log(userID, id, "details")
+  console.log(userID, "details")
+
+  const params = useParams();
+  const paramValue = params.id ? +params.id : 0;
+  console.log(paramValue, 'je')
   
   const {
     data: query,
     isLoading,
     isFetching,
   } = useQuery({
-    queryKey: ["post-detail ", id],
-    queryFn: () => fetchPostByID(id),
+    queryKey: ["post-detail ", paramValue],
+    queryFn: () => fetchPostByID(paramValue),
   });
 
   useEffect(() => {
     let dervTitle = "";
     let dervContent = "";
 
-    if (id > 0) {
+    if (paramValue > 0) {
       dervTitle = query?.data?.title;
       dervContent = query?.data?.content;
       setTitle(dervTitle);
       setContent(dervContent);
     }
-  }, [id, query?.data]);
+  }, [paramValue, query?.data]);
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -65,7 +69,7 @@ const AddUpdatePostContainer = ({ id, email, userID }: AddUpdatePost) => {
   const updateMutation = useMutation({
     mutationKey: ["update"],
     mutationFn: (data: IData) => {
-      const response = updatePost(id, data);
+      const response = updatePost(paramValue, data);
       return response;
     },
     onSuccess: () =>
@@ -87,7 +91,7 @@ const AddUpdatePostContainer = ({ id, email, userID }: AddUpdatePost) => {
       title: title,
       content: content,
     } as IData;
-    if (id > 0) {
+    if (paramValue > 0) {
       handleUpdateItem(data);
     } else {
       handleAddItem(data);
@@ -101,7 +105,7 @@ const AddUpdatePostContainer = ({ id, email, userID }: AddUpdatePost) => {
       <div className="add-post__container">
         <span className="add-post__container__title">
           {" "}
-          {id > 0 ? "Update" : "Add"}
+          {paramValue > 0 ? "Update" : "Add"}
           Post
         </span>
         <form>
@@ -126,7 +130,7 @@ const AddUpdatePostContainer = ({ id, email, userID }: AddUpdatePost) => {
             />
           </div>
           <Button
-            value={id > 0 ? "Update" : "Add"}
+            value={paramValue > 0 ? "Update" : "Add"}
             buttonType="button"
             handleClick={handleSubmit}
             type="primary"

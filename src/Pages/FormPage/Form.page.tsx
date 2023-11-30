@@ -33,9 +33,9 @@ const Form = observer(() => {
   } else if (path === "signup") {
     return <FormContainer formType={path} />;
   } else if (id === undefined) {
-    return <AddUpdatePostContainer userID={userID} email={email} id={0} />;
+    return <AddUpdatePostContainer userID={userID} />;
   } else {
-    return <AddUpdatePostContainer userID={userID} email={email} id={+id} />;
+    return <AddUpdatePostContainer userID={userID} />;
   }
 });
 
