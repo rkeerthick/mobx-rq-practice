@@ -4,9 +4,21 @@ import Button from "../Button/Button";
 import useStore from "../../Hooks/UseStore";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUsersByEmail } from "../../utils/functions";
+import AddUpdatePostContainer from "../../Containers/AddUpdatePostContainer/AddUpdatePostContainer";
+import { useEffect, useState } from "react";
+import { setState } from "../../Constant/functions";
 
 const Header = () => {
   const navigate = useNavigate();
+
+
+  const [path, setPath] = useState("");
+  const [id, setId] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    setState(setPath, window.location.href.split("/")[3]);
+    setState(setId, window.location.href.split("/")[4]);
+  }, [path, id]);
   const {
     rootStore: { loginStore },
   } = useStore();
