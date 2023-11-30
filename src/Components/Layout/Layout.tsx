@@ -1,10 +1,7 @@
 import Header from "../../Containers/Header/Header";
 import Sidebar from "../../Containers/SideBar/Sidebar";
+import { layout } from "../../Types";
 import "./Layout.scss";
-
-interface layout {
-  children: JSX.Element;
-}
 
 const Layout = ({ children }: layout) => {
   return (

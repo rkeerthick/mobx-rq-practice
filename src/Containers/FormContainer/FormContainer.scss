@@ -1,0 +1,40 @@
+@import "../../Constant/scss/colors.scss";
+@import "../../Constant/scss/function.scss";
+
+.add-post {
+  @include flex($justify-content: center);
+  position: absolute;
+  top: 26%;
+  left: 37%;
+
+  &__container {
+    @include flex($flex-direction: column);
+    background-color: $form-background;
+    padding: 50px 80px;
+    border-radius: 8px;
+
+    &__title {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 20px 0px;
+    }
+    form {
+      @include flex($flex-direction: column);
+      margin-top: 20px;
+    }
+
+    &__input {
+      @include flex($flex-direction: column, $row-gap: 10px);
+      margin-bottom: 20px;
+
+      Input,
+      TextArea {
+        width: 300px;
+        padding: 5px 10px;
+        outline: none;
+        font-size: 16px;
+        border-radius: 4px;
+      }
+    }
+  }
+}

@@ -71,3 +71,7 @@ export interface IUser {
 export interface search {
   handleSearchText: any;
 }
+
+export interface layout {
+  children: JSX.Element;
+}

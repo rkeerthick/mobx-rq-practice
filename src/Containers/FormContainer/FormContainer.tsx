@@ -1,11 +1,11 @@
+import "./FormContainer.scss";
 import { useEffect } from "react";
 import Input from "../../Components/Input/Input";
 import Button from "../../Components/Button/Button";
 import { Form, IUser } from "../../Types";
 import { useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { addUser, fetchUsersByEmail } from "../../utils/functions";
-import { v4 as uuid } from "uuid";
+import { useMutation } from "@tanstack/react-query";
+import { addUser } from "../../utils/functions";
 import {
   setState,
   userAlreadyExist,
@@ -36,7 +36,7 @@ const FormContainer = ({ formType }: Form) => {
   const { data: users } = useGetUsers();
   const handleSignUp = async () => {
     const data = {
-      email: email
+      email: email,
     } as IUser;
     try {
       if (!userAlreadyExist(email, users?.data)) {

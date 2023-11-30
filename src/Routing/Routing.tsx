@@ -1,4 +1,4 @@
-import "../Pages/FormPage/Form.scss";
+
 import { Routes, Route } from "react-router-dom";
 import Posts from "../Pages/PostsPage/Posts.page";
 import { observer } from "mobx-react-lite";

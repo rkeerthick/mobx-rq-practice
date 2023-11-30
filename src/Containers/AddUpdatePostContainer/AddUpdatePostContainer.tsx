@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import "./AddUpdatePostContainer.scss";
 import { useEffect, useState } from "react";
 import Button from "../../Components/Button/Button";
 import Input from "../../Components/Input/Input";
@@ -6,18 +7,22 @@ import TextArea from "../../Components/TextArea/TextArea";
 import { AddUpdatePost, IData } from "../../Types";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { addPost, fetchPostByID, fetchUsersByEmail, updatePost } from "../../utils/functions";
+import {
+  addPost,
+  fetchPostByID,
+  fetchUsersByEmail,
+  updatePost,
+} from "../../utils/functions";
 import { v4 as uuid } from "uuid";
 import { setState } from "../../Constant/functions";
 
 const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
   const queryClient = useQueryClient();
-  console.log(userID, "details")
 
   const params = useParams();
   const paramValue = params.id ? +params.id : 0;
-  console.log(paramValue, 'je')
-  
+  console.log(paramValue, "je");
+
   const {
     data: query,
     isLoading,
@@ -36,6 +41,9 @@ const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
       dervContent = query?.data?.content;
       setTitle(dervTitle);
       setContent(dervContent);
+    } else {
+      setTitle("");
+      setContent("");
     }
   }, [paramValue, query?.data]);
 
@@ -43,13 +51,6 @@ const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
   const [content, setContent] = useState("");
 
   const navigate = useNavigate();
-
-  // const handleTitle = (e: any) => {
-  //   setTitle(e.target.value);
-  // };
-  // const handleContent = (e: any) => {
-  //   setContent(e.target.value);
-  // };
 
   const addMutation = useMutation({
     mutationKey: ["addPost"],
@@ -115,7 +116,6 @@ const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
               type="text"
               value={title}
               placeholder="Enter Title..."
-              // onChange={handleTitle}
               onChange={(e: any) => setState(setTitle, e.target.value)}
             />
           </div>
@@ -125,7 +125,6 @@ const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
               rows={6}
               placeholder="Write here..."
               value={content}
-              // onChange={handleContent}
               onChange={(e: any) => setState(setContent, e.target.value)}
             />
           </div>
