@@ -1,7 +1,5 @@
 import "./Post.scss";
 import { useNavigate } from "react-router-dom";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { deletePost } from "../../utils/functions";
 import Button from "../Button/Button";
 import { post } from "../../Types";
 import {
@@ -11,25 +9,19 @@ import {
   AiFillDislike,
 } from "react-icons/ai";
 import { useState } from "react";
+import useStore from "../../Hooks/UseStore";
 
-const Post = ({ id, title, content }: post) => {
+const Post = ({ id, title, content, handleDelete }: post) => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
 
-  const deleteMutation = useMutation({
-    mutationFn: (id: string) => deletePost(id),
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ["unique posts"] }),
-  });
+  const {
+    rootStore: { loginStore },
+  } = useStore();
 
-  const handleDeletePost = async (id: string) => {
-    try {
-      await deleteMutation.mutateAsync(id);
-    } catch (error: any) {
-      console.error("Error adding item:", error.message);
-    }
+  const handleDeletePost = (id: string) => {
+    handleDelete(id);
   };
 
   const handleEditPost = (id: string) => {
@@ -48,19 +40,23 @@ const Post = ({ id, title, content }: post) => {
     <div className="post">
       <div className="post__container">
         <div className="post__container__header">
-          <Button
-            value="Edit"
-            buttonType="button"
-            handleClick={() => handleEditPost(id)}
-            type="primary"
-          />
+          {loginStore?.getUserID > 0 && (
+            <>
+              <Button
+                value="Edit"
+                buttonType="button"
+                handleClick={() => handleEditPost(id)}
+                type="primary"
+              />
 
-          <Button
-            value="Delete"
-            buttonType="button"
-            handleClick={() => handleDeletePost(id)}
-            type="primary"
-          />
+              <Button
+                value="Delete"
+                buttonType="button"
+                handleClick={() => handleDeletePost(id)}
+                type="primary"
+              />
+            </>
+          )}
         </div>
         <h2>{title}</h2>
         <h4>{content}</h4>

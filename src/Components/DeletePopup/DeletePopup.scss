@@ -1,14 +1,14 @@
 @import "../../Constant/scss/function.scss";
 .delete-popup {
   width: 100%;
-  //   height: calc(100vh - 300px);
+
   h2 {
     color: #fff;
   }
+
   &__container {
     @include flex($justify-content: center, $flex-direction: column);
-    position: relative;
-    top: 300px;
+    position: absolute;
     background-color: #f67878;
     width: 40%;
     height: 300px;
@@ -24,11 +24,12 @@
         font-size: 24px;
 
         &:hover {
-            color: white;
+          color: white;
         }
       }
     }
   }
+
   &__button-wrapper {
     display: flex;
     gap: 20px;
@@ -36,5 +37,5 @@
 }
 
 .none {
-    display: none;
+  display: none;
 }

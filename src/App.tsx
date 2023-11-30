@@ -17,9 +17,9 @@ const App = observer(() => {
         {/* <Layout>
           <Routing />
         </Layout> */}
-        {/* <Header />
-        <Routing /> */}
-        <DeletePopup />
+        <Header />
+        <Routing />
+        {/* <DeletePopup /> */}
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

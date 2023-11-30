@@ -53,6 +53,7 @@ export interface post {
   id: string;
   title: string;
   content: string;
+  handleDelete?: any;
 }
 
 export interface AddUpdatePost {

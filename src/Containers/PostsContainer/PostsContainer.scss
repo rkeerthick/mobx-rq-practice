@@ -1,13 +1,19 @@
-@import '../../Constant/scss/function.scss';
+@import "../../Constant/scss/function.scss";
 
 .posts-container {
-    @include flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 40px;
+  @include flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 40px;
 }
 
 img {
-    position: relative;
-    top: 100px;
+  position: relative;
+  top: 100px;
+}
+
+.delete-popup {
+  position: absolute;
+  top: 36%;
+  left: 30%;
 }

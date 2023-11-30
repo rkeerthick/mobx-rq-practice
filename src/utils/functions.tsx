@@ -12,7 +12,7 @@ export const addPost = (data: IData) => {
   return response;
 };
 
-export const deletePost = (id: string) => {
+export const deletePost = (id: number) => {
   const response = axios.delete(`${url.delete.DELETEUSER}/${id}`);
   return response;
 };
