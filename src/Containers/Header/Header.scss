@@ -7,7 +7,8 @@ header {
     color: $btn-primary-text;
     height: 50px;
     padding: 12px 8px;
-
+    position: fixed;
+    width: calc(100% - 16px);
     @include flex($justify-content: space-between);
 
     h1, button {

@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import "./Header.scss";
-import Button from "../Button/Button";
+import Button from "../../Components/Button/Button";
 import useStore from "../../Hooks/UseStore";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUsersByEmail } from "../../utils/functions";
-import AddUpdatePostContainer from "../../Containers/AddUpdatePostContainer/AddUpdatePostContainer";
+import AddUpdatePostContainer from "../AddUpdatePostContainer/AddUpdatePostContainer";
 import { useEffect, useState } from "react";
 import { setState } from "../../Constant/functions";
 

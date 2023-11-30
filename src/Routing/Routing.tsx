@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Posts from "../Pages/PostsPage/Posts.page";
 import Form from "../Pages/FormPage/Form.page";
+import { observer } from "mobx-react-lite";
 
-const Routing = () => {
+const Routing = observer(() => {
   return (
     <Routes>
       <Route path="/" element={<Posts />} />
@@ -12,6 +13,6 @@ const Routing = () => {
       <Route path="/signup" element={<Form />} />
     </Routes>
   );
-};
+})
 
 export default Routing;

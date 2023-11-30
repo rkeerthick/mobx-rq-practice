@@ -1,4 +1,5 @@
-import Header from "../Header/Header";
+import Header from "../../Containers/Header/Header";
+import Sidebar from "../../Containers/SideBar/Sidebar";
 import "./Layout.scss";
 
 interface layout {
@@ -11,7 +12,7 @@ const Layout = ({ children }: layout) => {
       <div className="item1">
         <Header />
       </div>
-      <div className="item2">sidebar</div>
+      <div className="item2"><Sidebar /></div>
       <div className="item3">{children}</div>
     </div>
   );

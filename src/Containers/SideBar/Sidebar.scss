@@ -1,0 +1,41 @@
+@import "../../Constant/scss/colors.scss";
+@import "../../Constant/scss/function.scss";
+
+.sidebar {
+  width: 250px;
+  position: fixed;
+  margin-top: 74px;
+  &__container {
+    height: calc(100vh - 74px);
+    background-color: $sidebar;
+    @include flex(
+      $justify-content: flex-start,
+      $align-item: flex-start,
+      $flex-direction: column
+    );
+
+    &__user-list,
+    &__imp-list {
+      width: 100%;
+      div {
+        padding: 20px 0px;
+        list-style-type: none;
+        color: $btn-primary-text;
+        border-bottom: 2px solid gray;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      div:nth-child(1) {
+        border-top: 2px solid gray;
+      }
+    }
+
+    &__user-list {
+    }
+
+    &__imp-list {
+        margin-top: auto;
+    }
+  }
+}
