@@ -1,5 +1,4 @@
-
-@import '../../Constant/scss/colors.scss';
+@import "../../Constant/scss/colors.scss";
 button {
   width: max-content;
   padding: 8px 20px;
@@ -16,11 +15,22 @@ button {
 }
 
 .secondary {
-    background-color: $btn-secondary;
-    color: $btn-secondary-text;
+  background-color: $btn-secondary;
+  color: $btn-secondary-text;
 }
 
 .danger {
   background-color: $btn-danger;
   color: $btn-primary-text;
+}
+
+.add-post-btn {
+  color: $btn-primary-text;
+  background-color: $btn-primary;
+  position: absolute;
+  right: 28px;
+  border-radius: 100%;
+  width: fit-content;
+  height: 50px;
+  font-size: 28px;
 }

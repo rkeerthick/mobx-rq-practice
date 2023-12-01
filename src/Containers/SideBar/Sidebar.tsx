@@ -8,8 +8,8 @@ const Sidebar = () => {
     rootStore: { loginStore },
   } = useStore();
   const handleSignOut = () => {
-    navigate("/login");
     loginStore.setLogoutUser();
+    navigate("/login");
   };
   return (
     <div className="sidebar">

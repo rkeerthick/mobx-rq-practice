@@ -6,8 +6,12 @@ import { search, setState } from "../../Constant/functions";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUsersByEmail } from "../../utils/functions";
 import useStore from "../../Hooks/UseStore";
+import Button from "../../Components/Button/Button";
+import "./PostsPage.scss";
+import { useNavigate } from "react-router-dom";
 
 const Posts = () => {
+  const navigate = useNavigate();
   const { data: posts, isLoading, isFetching, isError, error } = UseGetPosts();
   const [searchText, setSearchText] = useState("");
   const {
@@ -25,6 +29,14 @@ const Posts = () => {
   }
   return (
     <div className="page-container">
+      {loginStore.getLoginUser !== "" && (
+        <Button
+          buttonType="button"
+          type="add-post-btn"
+          value="+"
+          handleClick={() => navigate("/addpost")}
+        />
+      )}
       <SearchBar
         handleSearchText={(data: string) => setState(setSearchText, data)}
       />

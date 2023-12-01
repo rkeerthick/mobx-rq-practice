@@ -3,8 +3,9 @@
 
 .sidebar {
   overflow: scroll;
+  overflow-x: hidden;
   &__container {
-    height: calc(100vh - 89px);
+    height: calc(100vh - 74px);
     background-color: $sidebar;
     @include flex(
       $justify-content: flex-start,

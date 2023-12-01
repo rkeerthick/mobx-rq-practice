@@ -9,6 +9,7 @@
   grid-area: main;
   height: calc(100vh - 74px);
   overflow: scroll;
+  overflow-x: hidden;
 }
 
 .grid-container {

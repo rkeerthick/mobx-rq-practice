@@ -25,7 +25,7 @@ const DeletePopup = ({ isDelete, id, handleDelete }: any) => {
   };
 
   return (
-    <div className={`delete-popup ${!isDelete && "none"}`}>
+    <div className={`delete-popup ${!isDelete && "none"}`} onClick={handleDelete}>
       <div className="delete-popup__container">
         <div className="delete-popup__container__cls-btn-wrapper">
           <MdClose className="close-btn" onClick={handleDelete} />
