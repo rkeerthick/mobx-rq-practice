@@ -1,5 +1,6 @@
 import { LoginStore } from "./LoginStore";
 import { PostsStore } from "./PostsStore";
+import { useState } from "react";
 
 export class RootStore {
   postsStore: PostsStore;

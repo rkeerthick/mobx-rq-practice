@@ -3,9 +3,8 @@ import Post from "../../Components/Post/Post";
 import useStore from "../../Hooks/UseStore";
 import { map } from "lodash";
 import { IPost } from "../../Types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NoDataFound from "../../assets/gif/no-result-found.gif";
-import Loader from "../../assets/gif/loading.gif";
 import DeletePopup from "../../Components/DeletePopup/DeletePopup";
 
 const PostsContainer = ({
@@ -22,10 +21,13 @@ const PostsContainer = ({
     rootStore: { postsStore, loginStore },
   } = useStore();
   postsStore.setPosts(data);
+
   let result = data;
-  if (loginStore?.getUserID > 0) {
-    result = data?.filter((d: any) => d.userId === loginStore?.getUserID);
-  }
+  if (loginStore?.getIsMyPost) {
+    if (loginStore?.getUserID > 0) {
+        result = data?.filter((d: any) => d.userId === loginStore?.getUserID);
+      }
+    }
   console.log(result, "resulst");
   if (isLoading || isFetching) {
     return <h1>Loading</h1>;

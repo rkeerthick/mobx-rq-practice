@@ -3,12 +3,14 @@ import { IRootStore } from "../Types/index";
 import { makePersistable } from "mobx-persist-store";
 
 export class LoginStore {
+  isMyPost: boolean = false;
   userId: number = 0;
   loginUser: string = "";
   rootStore: IRootStore;
 
   constructor(rootStore: IRootStore) {
     makeObservable(this, {
+      isMyPost: observable,
       userId: observable,
       loginUser: observable,
       setLogoutUser: action,
@@ -21,6 +23,10 @@ export class LoginStore {
       storage: window.localStorage,
     });
     this.rootStore = rootStore;
+  }
+
+  setIsMyPost() {
+    this.isMyPost = !this.isMyPost;
   }
 
   setUserID(userId: number) {
@@ -42,5 +48,9 @@ export class LoginStore {
 
   get getUserID() {
     return this.userId;
+  }
+
+  get getIsMyPost() {
+    return this.isMyPost;
   }
 }

@@ -16,7 +16,7 @@ const Sidebar = () => {
       <div className="sidebar__container">
         <div className="sidebar__container__user-list">
           <div>All Posts</div>
-          <div>My Posts</div>
+          <div onClick={() => loginStore.setIsMyPost()}>My Posts</div>
         </div>
         <div className="sidebar__container__imp-list">
           {loginStore?.getLoginUser === "" && (
