@@ -2,11 +2,9 @@
 @import "../../Constant/scss/function.scss";
 
 .sidebar {
-  width: 250px;
-  position: fixed;
-  margin-top: 74px;
+  overflow: scroll;
   &__container {
-    height: calc(100vh - 74px);
+    height: calc(100vh - 89px);
     background-color: $sidebar;
     @include flex(
       $justify-content: flex-start,

@@ -1,13 +1,20 @@
-.item1 { grid-area: header; }
-.item2 { grid-area: menu; }
-.item3 { grid-area: main; }
-.item4 { grid-area: right; }
-.item5 { grid-area: footer; }
+.header-layout {
+  grid-area: header;
+  height: 74px;
+}
+.sidebar-layout {
+  grid-area: sidebar;
+}
+.main-layout {
+  grid-area: main;
+  height: calc(100vh - 74px);
+  overflow: scroll;
+}
 
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header header header header header'
-    'menu main main main main main'
-    'menu main main main main main';
+    "header header header header header"
+    "sidebar main main main main"
+
 }

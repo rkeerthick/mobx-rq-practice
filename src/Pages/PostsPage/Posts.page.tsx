@@ -24,7 +24,7 @@ const Posts = () => {
     resultData = search(posts?.data, searchText);
   }
   return (
-    <>
+    <div className="page-container">
       <SearchBar
         handleSearchText={(data: string) => setState(setSearchText, data)}
       />
@@ -35,7 +35,7 @@ const Posts = () => {
         isError={isError}
         error={error}
       />
-    </>
+    </div>
   );
 };
 

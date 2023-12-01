@@ -8,9 +8,9 @@ const Sidebar = () => {
     rootStore: { loginStore },
   } = useStore();
   const handleSignOut = () => {
-    navigate('/login')
+    navigate("/login");
     loginStore.setLogoutUser();
-  }
+  };
   return (
     <div className="sidebar">
       <div className="sidebar__container">
@@ -21,18 +21,15 @@ const Sidebar = () => {
         <div className="sidebar__container__imp-list">
           {loginStore?.getLoginUser === "" && (
             <>
-              <div onClick={() => navigate("/signup")}>
-                Sign Up
-              </div>
-              <div onClick={() => navigate("/login")}>
-                Sign In
-              </div>
+              <div onClick={() => navigate("/signup")}>Sign Up</div>
+              <div onClick={() => navigate("/login")}>Sign In</div>
             </>
           )}
           {loginStore?.getLoginUser !== "" && (
-              <div onClick={handleSignOut}>
-                Sign Out
-              </div>
+            <>
+              <div>Hii, {loginStore.getUserID}</div>
+              <div onClick={handleSignOut}>Sign Out</div>
+            </>
           )}
         </div>
       </div>

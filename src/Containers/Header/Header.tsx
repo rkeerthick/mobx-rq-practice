@@ -57,7 +57,7 @@ const Header = () => {
     <header>
       <div className="header">
         <h1 onClick={handlePostClick}>Posts</h1>
-        {loginStore?.getLoginUser && (
+        {/* {loginStore?.getLoginUser && (
           <div className="header__container">
             <h3>Hello, {loggedInUserID}</h3>
             <Button
@@ -73,8 +73,8 @@ const Header = () => {
               type="secondary"
             />
           </div>
-        )}
-        {!loginStore?.getLoginUser && (
+        )} */}
+        {/* {!loginStore?.getLoginUser && (
           <div className="header__container">
             <Button
               buttonType="button"
@@ -89,7 +89,7 @@ const Header = () => {
               type="secondary"
             />
           </div>
-        )}
+        )} */}
       </div>
     </header>
   );

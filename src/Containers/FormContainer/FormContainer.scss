@@ -3,9 +3,8 @@
 
 .add-post {
   @include flex($justify-content: center);
-  position: absolute;
-  top: 26%;
-  left: 37%;
+  width: 100%;
+  height: calc(100% - 74px);
 
   &__container {
     @include flex($flex-direction: column);
