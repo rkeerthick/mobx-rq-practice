@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import "./Sidebar.scss";
 import useStore from "../../Hooks/UseStore";
+import { observer } from "mobx-react-lite";
 
-const Sidebar = () => {
+const Sidebar = observer(() => {
   const navigate = useNavigate();
   const {
     rootStore: { loginStore },
@@ -11,12 +12,18 @@ const Sidebar = () => {
     loginStore.setLogoutUser();
     navigate("/login");
   };
+  const handleMyPost = () => {
+    loginStore?.setIsMyPost();
+    console.log(loginStore.getIsMyPost, "res");
+  };
+  console.log(loginStore.getIsMyPost, "res");
+
   return (
     <div className="sidebar">
       <div className="sidebar__container">
         <div className="sidebar__container__user-list">
-          <div>All Posts</div>
-          <div onClick={() => loginStore.setIsMyPost()}>My Posts</div>
+          <div onClick={handleMyPost}>All Posts</div>
+          <div onClick={handleMyPost}>My Posts</div>
         </div>
         <div className="sidebar__container__imp-list">
           {loginStore?.getLoginUser === "" && (
@@ -35,6 +42,6 @@ const Sidebar = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Sidebar;

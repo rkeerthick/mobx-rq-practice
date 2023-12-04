@@ -3,11 +3,13 @@ import Post from "../../Components/Post/Post";
 import useStore from "../../Hooks/UseStore";
 import { map } from "lodash";
 import { IPost } from "../../Types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NoDataFound from "../../assets/gif/no-result-found.gif";
 import DeletePopup from "../../Components/DeletePopup/DeletePopup";
+import { observe } from "mobx";
+import { observer } from "mobx-react-lite";
 
-const PostsContainer = ({
+const PostsContainer = observer(({
   data,
   isLoading,
   isFetching,
@@ -23,11 +25,11 @@ const PostsContainer = ({
   postsStore.setPosts(data);
 
   let result = data;
-  if (loginStore?.getIsMyPost) {
-    if (loginStore?.getUserID > 0) {
-        result = data?.filter((d: any) => d.userId === loginStore?.getUserID);
-      }
-    }
+  if (loginStore?.getIsMyPost && loginStore?.getUserID > 0) {
+    debugger
+    result = data?.filter((d: any) => d.userId === loginStore?.getUserID);
+  }
+
   console.log(result, "resulst");
   if (isLoading || isFetching) {
     return <h1>Loading</h1>;
@@ -57,14 +59,14 @@ const PostsContainer = ({
           <img src={NoDataFound} alt="" />
         )}
       </div>
-        <DeletePopup
-          className="delete-popup"
-          id={postId}
-          isDelete={isDelete}
-          handleDelete={handleDelete}
-        />
+      <DeletePopup
+        className="delete-popup"
+        id={postId}
+        isDelete={isDelete}
+        handleDelete={handleDelete}
+      />
     </>
   );
-};
+});
 
 export default PostsContainer;

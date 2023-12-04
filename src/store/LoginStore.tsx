@@ -7,6 +7,7 @@ export class LoginStore {
   userId: number = 0;
   loginUser: string = "";
   rootStore: IRootStore;
+  data: boolean = false;
 
   constructor(rootStore: IRootStore) {
     makeObservable(this, {
@@ -25,6 +26,7 @@ export class LoginStore {
     this.rootStore = rootStore;
   }
 
+
   setIsMyPost() {
     this.isMyPost = !this.isMyPost;
   }
@@ -40,6 +42,8 @@ export class LoginStore {
   setLogoutUser() {
     this.loginUser = "";
     this.userId = 0;
+    this.isMyPost = false;
+    localStorage.clear();
   }
 
   get getLoginUser() {

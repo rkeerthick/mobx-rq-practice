@@ -40,7 +40,7 @@ const Post = ({ id, title, content, handleDelete }: post) => {
     <div className="post">
       <div className="post__container">
         <div className="post__container__header">
-          {loginStore?.getUserID > 0 && (
+          {(loginStore.getIsMyPost && loginStore?.getUserID > 0) && (
             <>
               <Button
                 value="Edit"
