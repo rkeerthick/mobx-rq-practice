@@ -10,7 +10,8 @@ export const url = {
     GETUSERSBYEMAIL: "http://localhost:3939/users?email",
   },
   put: {
-    UPDATEUSER: "http://localhost:3939/posts",
+    UPDATEPOST: "http://localhost:3939/posts",
+    UPDATEUSER: "http://localhost:3939/users",
   },
   delete: {
     DELETEUSER: "http://localhost:3939/posts",

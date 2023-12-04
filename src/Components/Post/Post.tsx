@@ -8,17 +8,39 @@ import {
   AiOutlineDislike,
   AiFillDislike,
 } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useStore from "../../Hooks/UseStore";
+import { fetchUsersByEmail, updateLikes } from "../../utils/functions";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const Post = ({ id, title, content, handleDelete }: post) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
-
   const {
     rootStore: { loginStore },
   } = useStore();
+  
+  const { data: userData } = useQuery({queryKey: ["user details"], queryFn: () =>fetchUsersByEmail(loginStore?.loginUser)})
+
+  const updateMutation = useMutation({
+    mutationKey: ["update"],
+    mutationFn: (data: any) => {
+      const response = updateLikes(loginStore.getUserID, data);
+      return response;
+    },
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["unique posts"] }),
+  });
+
+  const handleUpdateLikes = async (data: any) => {
+    try {
+      await updateMutation.mutateAsync(data);
+    } catch (error: any) {
+      console.error("Error updating item:", error.message);
+    }
+  };
 
   const handleDeletePost = (id: string) => {
     handleDelete(id);
@@ -29,10 +51,14 @@ const Post = ({ id, title, content, handleDelete }: post) => {
   };
 
   const handleLike = () => {
+    userData?.data[0]?.likes.push({ postId: id });
+    handleUpdateLikes(userData?.data[0]);
     setLike((prev) => !prev);
   };
 
   const handleDislike = () => {
+    userData?.data[0]?.dislikes.push({ postId: id });
+    handleUpdateLikes(userData?.data[0]);
     setDislike((prev) => !prev);
   };
 
@@ -40,7 +66,7 @@ const Post = ({ id, title, content, handleDelete }: post) => {
     <div className="post">
       <div className="post__container">
         <div className="post__container__header">
-          {(loginStore.getIsMyPost && loginStore?.getUserID > 0) && (
+          {loginStore.getIsMyPost && loginStore?.getUserID > 0 && (
             <>
               <Button
                 value="Edit"

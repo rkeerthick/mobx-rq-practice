@@ -66,6 +66,8 @@ export interface Form {
 
 export interface IUser {
   email: string;
+  likes: [];
+  dislikes: [];
 }
 
 export interface search {

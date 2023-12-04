@@ -26,7 +26,6 @@ const PostsContainer = observer(({
 
   let result = data;
   if (loginStore?.getIsMyPost && loginStore?.getUserID > 0) {
-    debugger
     result = data?.filter((d: any) => d.userId === loginStore?.getUserID);
   }
 

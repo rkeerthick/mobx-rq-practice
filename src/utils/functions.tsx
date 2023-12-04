@@ -18,7 +18,7 @@ export const deletePost = (id: number) => {
 };
 
 export const updatePost = async (id: number, data: IData) => {
-  const response = await axios.put(`${url.put.UPDATEUSER}/${id}`, data);
+  const response = await axios.put(`${url.put.UPDATEPOST}/${id}`, data);
   return response;
 };
 
@@ -39,5 +39,10 @@ export const fetchUsers = () => {
 
 export const fetchUsersByEmail = (email: string) => {
   const response = axios.get(`${url.get.GETUSERSBYEMAIL}=${email}`);
+  return response;
+};
+
+export const updateLikes = (id: any, data: any) => {
+  const response = axios.put(`${url.put.UPDATEUSER}/${id}`, data);
   return response;
 };

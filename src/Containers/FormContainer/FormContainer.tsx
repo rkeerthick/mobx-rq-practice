@@ -37,6 +37,8 @@ const FormContainer = ({ formType }: Form) => {
   const handleSignUp = async () => {
     const data = {
       email: email,
+      likes: [],
+      dislikes: []
     } as IUser;
     try {
       if (!userAlreadyExist(email, users?.data)) {
