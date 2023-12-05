@@ -29,7 +29,6 @@ const PostsContainer = observer(({
     result = data?.filter((d: any) => d.userId === loginStore?.getUserID);
   }
 
-  console.log(result, "resulst");
   if (isLoading || isFetching) {
     return <h1>Loading</h1>;
   }
@@ -39,7 +38,6 @@ const PostsContainer = observer(({
     setPostId(id);
   };
 
-  console.log(loginStore.getUserID, "hello");
   return (
     <>
       <div className="posts-container">

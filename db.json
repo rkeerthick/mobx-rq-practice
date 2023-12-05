@@ -32,6 +32,15 @@
       "likes": [
         {
           "postId": 3
+        },
+        {
+          "postId": 4
+        },
+        {
+          "postId": 10
+        },
+        {
+          "postId": 8
         }
       ],
       "dislikes": []
@@ -77,10 +86,8 @@
     {
       "userId": 4,
       "title": "google",
-      "content": "dude...",
-      "id": 6,
-      "likeCount": 0,
-      "dislikeCount": 0
+      "content": "dude",
+      "id": 6
     },
     {
       "userId": 3,

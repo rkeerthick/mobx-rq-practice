@@ -14,10 +14,8 @@ const Sidebar = observer(() => {
   };
   const handleMyPost = () => {
     loginStore?.setIsMyPost();
-    console.log(loginStore.getIsMyPost, "res");
   };
-  console.log(loginStore.getIsMyPost, "res");
-
+  
   return (
     <div className="sidebar">
       <div className="sidebar__container">

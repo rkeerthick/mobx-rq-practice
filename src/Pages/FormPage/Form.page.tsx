@@ -16,8 +16,6 @@ const Form = observer(() => {
   const email = loginStore?.getLoginUser
   const userID = loginStore?.getUserID
 
-  console.log(email, userID, 'hhh')
-
   const [path, setPath] = useState("");
   const [id, setId] = useState<string | undefined>(undefined);
 

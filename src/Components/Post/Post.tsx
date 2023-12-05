@@ -8,9 +8,13 @@ import {
   AiOutlineDislike,
   AiFillDislike,
 } from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useStore from "../../Hooks/UseStore";
-import { fetchUsersByEmail, updateLikes } from "../../utils/functions";
+import {
+  fetchPostByID,
+  fetchUsersByEmail,
+  updateLikes,
+} from "../../utils/functions";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const Post = ({ id, title, content, handleDelete }: post) => {
@@ -21,8 +25,16 @@ const Post = ({ id, title, content, handleDelete }: post) => {
   const {
     rootStore: { loginStore },
   } = useStore();
-  
-  const { data: userData } = useQuery({queryKey: ["user details"], queryFn: () =>fetchUsersByEmail(loginStore?.loginUser)})
+
+  const { data: userData } = useQuery({
+    queryKey: ["user details"],
+    queryFn: () => fetchUsersByEmail(loginStore?.loginUser),
+  });
+
+  const { data: postData } = useQuery({
+    queryKey: ["post details"],
+    queryFn: () => fetchPostByID(+id),
+  });
 
   const updateMutation = useMutation({
     mutationKey: ["update"],
@@ -51,15 +63,27 @@ const Post = ({ id, title, content, handleDelete }: post) => {
   };
 
   const handleLike = () => {
-    userData?.data[0]?.likes.push({ postId: id });
-    handleUpdateLikes(userData?.data[0]);
-    setLike((prev) => !prev);
+    const isContains = userData?.data[0]?.likes.some(
+      (data: any) => data.postId === id
+    );
+    let temp: [];
+    if (isContains) {
+      temp = userData?.data[0]?.likes.filter((d: any) => d.postId !== id);
+      if (userData) {
+        userData.data[0].likes = temp;
+      }
+      handleUpdateLikes(userData?.data[0]);
+    } else {
+      userData?.data[0]?.likes.push({ postId: id });
+      handleUpdateLikes(userData?.data[0]);
+    }
+    loginStore.getLoginUser !== "" && setLike((prev) => !prev);
   };
 
   const handleDislike = () => {
     userData?.data[0]?.dislikes.push({ postId: id });
     handleUpdateLikes(userData?.data[0]);
-    setDislike((prev) => !prev);
+    loginStore.getLoginUser !== "" && setDislike((prev) => !prev);
   };
 
   return (

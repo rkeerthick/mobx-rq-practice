@@ -21,7 +21,6 @@ const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
 
   const params = useParams();
   const paramValue = params.id ? +params.id : 0;
-  console.log(paramValue, "je");
 
   const {
     data: query,

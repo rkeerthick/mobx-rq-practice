@@ -14,11 +14,10 @@ const Layout = ({ children }: layout) => {
       <div className="header-layout">
         <Header />
       </div>
-      {loginStore.getLoginUser !== "" && (
         <div className="sidebar-layout">
           <Sidebar />
         </div>
-      )}
+      
       <div className="main-layout">{children}</div>
     </div>
   );
