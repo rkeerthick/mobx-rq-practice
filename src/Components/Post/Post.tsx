@@ -8,7 +8,6 @@ import {
   AiOutlineDislike,
   AiFillDislike,
 } from "react-icons/ai";
-import { useState } from "react";
 import useStore from "../../Hooks/UseStore";
 import {
   fetchPostByID,
@@ -20,8 +19,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 const Post = ({ id, title, content, handleDelete }: post) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [like, setLike] = useState(false);
-  const [dislike, setDislike] = useState(false);
   const {
     rootStore: { loginStore },
   } = useStore();
@@ -66,24 +63,21 @@ const Post = ({ id, title, content, handleDelete }: post) => {
     const isContains = userData?.data[0]?.likes.some(
       (data: any) => data.postId === id
     );
-    let temp: [];
+    let temp: any[] = [];
+
     if (isContains) {
       temp = userData?.data[0]?.likes.filter((d: any) => d.postId !== id);
-      if (userData) {
-        userData.data[0].likes = temp;
-      }
-      handleUpdateLikes(userData?.data[0]);
     } else {
-      userData?.data[0]?.likes.push({ postId: id });
-      handleUpdateLikes(userData?.data[0]);
+      temp = [...(userData?.data[0]?.likes || []), { postId: id }];
     }
-    loginStore.getLoginUser !== "" && setLike((prev) => !prev);
+
+    userData?.data[0] && (userData.data[0].likes = temp.slice());
+    handleUpdateLikes(userData?.data[0]);
   };
 
   const handleDislike = () => {
     userData?.data[0]?.dislikes.push({ postId: id });
     handleUpdateLikes(userData?.data[0]);
-    loginStore.getLoginUser !== "" && setDislike((prev) => !prev);
   };
 
   return (
@@ -112,7 +106,7 @@ const Post = ({ id, title, content, handleDelete }: post) => {
         <h4>{content}</h4>
         <div className="post__container__footer">
           <div className="post__container__footer__likes" onClick={handleLike}>
-            {like ? (
+            {false ? (
               <AiFillLike className="like-icon" />
             ) : (
               <AiOutlineLike className="like-icon" />
@@ -123,7 +117,7 @@ const Post = ({ id, title, content, handleDelete }: post) => {
             className="post__container__footer__dislikes"
             onClick={handleDislike}
           >
-            {dislike ? (
+            {false ? (
               <AiFillDislike className="like-icon" />
             ) : (
               <AiOutlineDislike className="dislike-icon" />
