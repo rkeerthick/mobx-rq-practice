@@ -18,12 +18,11 @@ const Post = ({ id, title, content, handleDelete }: post) => {
 
   const userData = loginUserStore.getUser;
   const isliked = userData.likes.some((data: any) => id === data.postId)
-
-        console.log(isliked, id, "like");
-  const { data: postData } = useQuery({
-    queryKey: ["post details"],
-    queryFn: () => fetchPostByID(+id),
-  });
+  const isdisliked = userData.dislikes.some((data: any) => id === data.postId);
+  // const { data: postData } = useQuery({
+  //   queryKey: ["post details"],
+  //   queryFn: () => fetchPostByID(+id),
+  // });
 
 
 
@@ -61,7 +60,7 @@ const Post = ({ id, title, content, handleDelete }: post) => {
         </div>
         <h2>{title}</h2>
         <h4>{content}</h4>
-        <LikeDislikeWrapper isLiked={isliked} id={id}  />
+        <LikeDislikeWrapper isLiked={isliked} isDisliked={isdisliked} id={id}  />
       </div>
     </div>
   );
