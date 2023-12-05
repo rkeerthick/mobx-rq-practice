@@ -77,3 +77,10 @@ export interface search {
 export interface layout {
   children: JSX.Element;
 }
+
+export interface loginUser {
+  id: number;
+  email: string;
+  likes: [];
+  dislikes: [];
+}

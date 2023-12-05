@@ -31,22 +31,17 @@
       "id": 4,
       "likes": [
         {
-          "postId": 3
-        },
-        {
-          "postId": 4
-        },
-        {
           "postId": 10
         },
         {
           "postId": 8
-        },
-        {
-          "postId": 1
         }
       ],
-      "dislikes": []
+      "dislikes": [
+        {
+          "postId": 3
+        }
+      ]
     },
     {
       "email": "p@mail.com",

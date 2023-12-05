@@ -14,6 +14,6 @@ export const search = (posts: [], searchText: string) => {
   );
 };
 
-export const setState = (state: any, value: string , ...props: any) => {
+export const setState = (state: any, value: any , ...props: any) => {
     state(value);
 }

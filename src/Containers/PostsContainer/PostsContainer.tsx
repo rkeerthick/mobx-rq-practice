@@ -8,6 +8,8 @@ import NoDataFound from "../../assets/gif/no-result-found.gif";
 import DeletePopup from "../../Components/DeletePopup/DeletePopup";
 import { observe } from "mobx";
 import { observer } from "mobx-react-lite";
+import { useQuery } from "@tanstack/react-query";
+import { fetchUsersByEmail } from "../../utils/functions";
 
 const PostsContainer = observer(({
   data,
@@ -20,9 +22,16 @@ const PostsContainer = observer(({
   const [postId, setPostId] = useState(0);
 
   const {
-    rootStore: { postsStore, loginStore },
+    rootStore: { postsStore, loginStore, loginUserStore },
   } = useStore();
   postsStore.setPosts(data);
+
+  const { data: userData } = useQuery({
+    queryKey: ["user details"],
+    queryFn: () => fetchUsersByEmail(loginStore?.loginUser),
+  });
+  loginUserStore.setUser(userData?.data[0]);
+  console.log(userData?.data[0], "hi");
 
   let result = data;
   if (loginStore?.getIsMyPost && loginStore?.getUserID > 0) {
