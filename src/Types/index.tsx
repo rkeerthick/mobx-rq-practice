@@ -81,6 +81,6 @@ export interface layout {
 export interface loginUser {
   id: number;
   email: string;
-  likes: [];
-  dislikes: [];
+  likes: object[];
+  dislikes: object[];
 }

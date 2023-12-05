@@ -15,12 +15,11 @@ const Post = ({ id, title, content, handleDelete }: post) => {
   const {
     rootStore: { loginStore, loginUserStore },
   } = useStore();
-  
-const { data: userData } = useQuery({
-  queryKey: ["user details"],
-  queryFn: () => fetchUsersByEmail(loginStore?.loginUser),
-});
 
+  const userData = loginUserStore.getUser;
+  const isliked = userData.likes.some((data: any) => id === data.postId)
+
+        console.log(isliked, id, "like");
   const { data: postData } = useQuery({
     queryKey: ["post details"],
     queryFn: () => fetchPostByID(+id),
@@ -62,7 +61,7 @@ const { data: userData } = useQuery({
         </div>
         <h2>{title}</h2>
         <h4>{content}</h4>
-        <LikeDislikeWrapper userData={userData} id={id}  />
+        <LikeDislikeWrapper isLiked={isliked} id={id}  />
       </div>
     </div>
   );

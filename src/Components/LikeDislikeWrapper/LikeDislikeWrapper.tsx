@@ -10,21 +10,14 @@ import useStore from "../../Hooks/UseStore";
 import { useState } from "react";
 import { setState } from "../../Constant/functions";
 
-const LikeDislikeWrapper = ({ id, isLiked, userData }: any) => {
-    const [like, setLike] = useState(false);
-    const [dislike, setDislike] = useState(false);
-    // const handleIsLiked = () => {
-    //     setLike(prev => !prev)
-    // }
-    // const handleIsDisliked = () => {
-    //     setDislike(prev => !prev);
-    // }
+const LikeDislikeWrapper = ({ id, isLiked }: any) => {
+  const [like, setLike] = useState(isLiked);
+  const [dislike, setDislike] = useState(false);
   const {
     rootStore: { loginStore, loginUserStore },
   } = useStore();
 
-    // const userData = loginUserStore?.getUser
-  
+  const userData = loginUserStore?.getUser;
 
   const updateMutation = useMutation({
     mutationKey: ["update"],
@@ -43,45 +36,44 @@ const LikeDislikeWrapper = ({ id, isLiked, userData }: any) => {
   };
 
   const handleLike = () => {
-      setState(setLike, !like);
-    const isContains = userData?.data[0]?.likes.some(
+    setState(setLike, !like);
+    const isContains = userData.likes.some(
       (data: any) => data.postId === id
     );
-    let temp: any[] = [];
+    let temp: object[] = [];
 
     if (isContains) {
-      temp = userData?.data[0]?.likes.filter((d: any) => d.postId !== id);
+      temp = userData.likes.filter((d: any) => d.postId !== id);
     } else {
-      temp = [...(userData?.data[0]?.likes || []), { postId: id }];
+      temp = [...(userData.likes || []), { postId: id }];
     }
 
-    // debugger;
-      userData?.data[0] && (userData.data[0].likes = temp.slice());
-    handleUpdateLikes(userData?.data[0]);
+    userData && (userData.likes = temp.slice());
+    handleUpdateLikes(userData);
   };
 
   const handleDislike = (e: any) => {
     e.preventDefault();
     setState(setDislike, !dislike);
-    const isContains = userData?.data[0]?.dislikes.some(
+    const isContains = userData.dislikes.some(
       (data: any) => data.postId === id
     );
     let temp: any[] = [];
 
     if (isContains) {
-      temp = userData?.data[0]?.dislikes.filter((d: any) => d.postId !== id);
+      temp = userData.dislikes.filter((d: any) => d.postId !== id);
     } else {
-      temp = [...(userData?.data[0]?.dislikes || []), { postId: id }];
+      temp = [...(userData.dislikes || []), { postId: id }];
     }
 
-    userData?.data[0] && (userData.data[0].dislikes = temp.slice());
-    handleUpdateLikes(userData?.data[0]);
+    userData && (userData.dislikes = temp.slice());
+    handleUpdateLikes(userData);
   };
 
   return (
     <div className="post__container__footer">
       <div className="post__container__footer__likes" onClick={handleLike}>
-        {(isLiked || like) ? (
+        {(like) ? (
           <AiFillLike className="like-icon" />
         ) : (
           <AiOutlineLike className="like-icon" />

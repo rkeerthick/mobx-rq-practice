@@ -31,7 +31,6 @@ const PostsContainer = observer(({
     queryFn: () => fetchUsersByEmail(loginStore?.loginUser),
   });
   loginUserStore.setUser(userData?.data[0]);
-  console.log(userData?.data[0], "hi");
 
   let result = data;
   if (loginStore?.getIsMyPost && loginStore?.getUserID > 0) {
