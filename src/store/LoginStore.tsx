@@ -26,7 +26,6 @@ export class LoginStore {
     this.rootStore = rootStore;
   }
 
-
   setIsMyPost() {
     this.isMyPost = !this.isMyPost;
   }

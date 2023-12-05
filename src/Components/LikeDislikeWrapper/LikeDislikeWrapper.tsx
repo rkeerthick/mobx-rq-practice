@@ -1,11 +1,11 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import {
   AiOutlineLike,
   AiFillLike,
   AiOutlineDislike,
   AiFillDislike,
 } from "react-icons/ai";
-import { fetchUsersByEmail, updateLikes } from "../../utils/functions";
+import { updateLikes } from "../../utils/functions";
 import useStore from "../../Hooks/UseStore";
 import { useState } from "react";
 import { setState } from "../../Constant/functions";

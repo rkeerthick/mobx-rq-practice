@@ -23,6 +23,7 @@ export const updatePost = async (id: number, data: IData) => {
 };
 
 export const fetchPostByID = (id: number) => {
+  console.log(id,"id")
   const response = axios.get(`${url.get.GETPOSTBYID}/${id}`);
   return response;
 };

@@ -3,7 +3,14 @@
     {
       "email": "a@mail.com",
       "id": 2,
-      "likes": [],
+      "likes": [
+        {
+          "postId": 6
+        },
+        {
+          "postId": 9
+        }
+      ],
       "dislikes": []
     },
     {
