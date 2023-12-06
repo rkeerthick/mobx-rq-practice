@@ -9,9 +9,19 @@
         },
         {
           "postId": 9
+        },
+        {
+          "postId": 1
         }
       ],
-      "dislikes": []
+      "dislikes": [
+        {
+          "postId": 9
+        },
+        {
+          "postId": 8
+        }
+      ]
     },
     {
       "email": "b@mail.com",

@@ -10,9 +10,9 @@ import useStore from "../../Hooks/UseStore";
 import { useState } from "react";
 import { setState } from "../../Constant/functions";
 
-const LikeDislikeWrapper = ({ id, isLiked }: any) => {
+const LikeDislikeWrapper = ({ id, isLiked, isDisliked }: any) => {
   const [like, setLike] = useState(isLiked);
-  const [dislike, setDislike] = useState(false);
+  const [dislike, setDislike] = useState(isDisliked);
   const {
     rootStore: { loginStore, loginUserStore },
   } = useStore();
@@ -53,7 +53,6 @@ const LikeDislikeWrapper = ({ id, isLiked }: any) => {
   };
 
   const handleDislike = (e: any) => {
-    e.preventDefault();
     setState(setDislike, !dislike);
     const isContains = userData.dislikes.some(
       (data: any) => data.postId === id

@@ -21,7 +21,7 @@ export interface IPost {
 }
 
 export interface Datum {
-  userId: any;
+  userId: string;
   id: string;
   title: string;
   content: string;
@@ -31,7 +31,7 @@ export interface ITextarea {
   rows: number;
   placeholder: string;
   value: string;
-  onChange: any;
+  onChange: React.ChangeEventHandler<HTMLTextAreaElement> | undefined;
 }
 
 export interface IInput {
@@ -39,13 +39,13 @@ export interface IInput {
   type: string;
   placeholder: string;
   value?: string;
-  onChange?: any;
+  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
 export interface IButton {
   value: string;
   buttonType?: "button" | "submit" | undefined;
-  handleClick?: any;
+  handleClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   type: string;
 }
 
@@ -66,8 +66,8 @@ export interface Form {
 
 export interface IUser {
   email: string;
-  likes: [];
-  dislikes: [];
+  likes: object[];
+  dislikes: object[];
 }
 
 export interface search {

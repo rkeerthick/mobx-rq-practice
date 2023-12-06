@@ -10,11 +10,10 @@ import { observer } from "mobx-react-lite";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPosts, fetchUsersByEmail } from "../../utils/functions";
 
-const PostsContainer = observer(
+const PostsContainer = (
   ({ data, isLoading, isFetching, isError, error }: IPost) => {
     const [isDelete, setIsDelete] = useState(false);
     const [postId, setPostId] = useState(0);
-
     const {
       rootStore: { postsStore, loginStore, loginUserStore, postStore },
     } = useStore();
@@ -27,13 +26,13 @@ const PostsContainer = observer(
     loginUserStore.setUser(userData?.data[0]);
 
     const { data: postsData } = useQuery({
-      queryKey: ["post details"],
+      queryKey: ["post details"], 
       queryFn: () => fetchPosts(),
     });
-    // console.log(postsData?.data, 'pos')
+    console.log(postsData?.data, 'pos')
     postStore.setPost(postsData?.data);
-
-    console.log(postStore.post, 'pos')
+    
+    console.log(postStore.post, 'ss')
     
 
     let result = data;

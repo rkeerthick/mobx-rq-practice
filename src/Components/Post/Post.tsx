@@ -4,8 +4,6 @@ import Button from "../Button/Button";
 import { post } from "../../Types";
 import useStore from "../../Hooks/UseStore";
 import LikeDislikeWrapper from "../LikeDislikeWrapper/LikeDislikeWrapper";
-import { useQuery } from "@tanstack/react-query";
-import { fetchPostByID } from "../../utils/functions";
 
 const Post = ({ id, title, content, handleDelete }: post) => {
   const navigate = useNavigate();
@@ -13,16 +11,9 @@ const Post = ({ id, title, content, handleDelete }: post) => {
     rootStore: { loginStore, loginUserStore },
   } = useStore();
 
-  const userData = loginUserStore.getUser;
-  const isliked = userData.likes.some((data: any) => id === data.postId)
-
-        console.log(isliked, id, "like");
-  const { data: postData } = useQuery({
-    queryKey: ["post details"],
-    queryFn: () => fetchPostByID(+id),
-  });
-
-
+  const userData = loginUserStore?.getUser;
+  const isliked = userData.likes.some((data: any) => id === data.postId);
+  const isdisliked = userData.dislikes.some((data: any) => id === data.postId);
 
   const handleDeletePost = (id: string) => {
     handleDelete(id);
@@ -56,7 +47,7 @@ const Post = ({ id, title, content, handleDelete }: post) => {
         </div>
         <h2>{title}</h2>
         <h4>{content}</h4>
-        <LikeDislikeWrapper isLiked={isliked} id={id}  />
+        <LikeDislikeWrapper isDisliked={isdisliked} isLiked={isliked} id={id}  />
       </div>
     </div>
   );

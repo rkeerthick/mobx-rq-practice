@@ -20,7 +20,7 @@ export class PostStore {
     this.rootStore = rootStore;
   }
 
-  setPost(data: []) {
+  setPost(data: any) {
     this.post = data;
   }
 }
