@@ -1,9 +1,9 @@
 import { action, computed, makeObservable, observable } from "mobx";
-import { IRootStore } from "../Types/index";
+import { Datum, IRootStore } from "../Types/index";
 import { makePersistable } from "mobx-persist-store";
 
 export class PostStore {
-  post: object[] = [];
+  post: Datum[] = [];
   rootStore: IRootStore;
 
   constructor(rootStore: IRootStore) {
@@ -20,7 +20,11 @@ export class PostStore {
     this.rootStore = rootStore;
   }
 
-  setPost(data: any) {
+  setPosts(data: any) {
     this.post = data;
+  }
+
+  setPost(id: number, data: any) {
+    this.post[id] = data;
   }
 }

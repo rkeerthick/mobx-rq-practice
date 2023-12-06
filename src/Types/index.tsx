@@ -17,7 +17,7 @@ export interface IPost {
   isLoading: boolean;
   isFetching: boolean;
   isError: boolean;
-  error: unknown;
+  error: string | undefined;
 }
 
 export interface Datum {
@@ -25,6 +25,8 @@ export interface Datum {
   id: string;
   title: string;
   content: string;
+  likeCount: number;
+  dislikeCount: number;
 }
 export interface ITextarea {
   title: string;
@@ -53,6 +55,8 @@ export interface post {
   id: string;
   title: string;
   content: string;
+  likeCount: number;
+  dislikeCount: number;
   handleDelete?: any;
 }
 
@@ -83,4 +87,11 @@ export interface loginUser {
   email: string;
   likes: object[];
   dislikes: object[];
+}
+export interface likeDislikeProps {
+  id: string;
+  isLiked: boolean;
+  isDisliked: boolean;
+  likeCount: number;
+  dislikeCount: number;
 }

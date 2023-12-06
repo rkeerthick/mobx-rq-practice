@@ -5,11 +5,14 @@ import { post } from "../../Types";
 import useStore from "../../Hooks/UseStore";
 import LikeDislikeWrapper from "../LikeDislikeWrapper/LikeDislikeWrapper";
 
-const Post = ({ id, title, content, handleDelete }: post) => {
+const Post = ({ id, title, content, likeCount, dislikeCount, handleDelete }: post) => {
   const navigate = useNavigate();
   const {
-    rootStore: { loginStore, loginUserStore },
+    rootStore: { loginStore, loginUserStore, postStore },
   } = useStore();
+
+  const temp = postStore?.post.map((post: any) => post);
+  console.log(temp, 'temp')
 
   const userData = loginUserStore?.getUser;
   const isliked = userData.likes.some((data: any) => id === data.postId);
@@ -47,7 +50,7 @@ const Post = ({ id, title, content, handleDelete }: post) => {
         </div>
         <h2>{title}</h2>
         <h4>{content}</h4>
-        <LikeDislikeWrapper isDisliked={isdisliked} isLiked={isliked} id={id}  />
+        <LikeDislikeWrapper likeCount={likeCount} dislikeCount={dislikeCount} isDisliked={isdisliked} isLiked={isliked} id={id}  />
       </div>
     </div>
   );

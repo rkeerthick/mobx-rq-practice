@@ -43,7 +43,7 @@ export const fetchUsersByEmail = (email: string) => {
   return response;
 };
 
-export const updateLikes = (id: any, data: any) => {
+export const updateLikes = (id: number, data: any) => {
   const response = axios.put(`${url.put.UPDATEUSER}/${id}`, data);
   return response;
 };

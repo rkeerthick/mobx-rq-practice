@@ -5,63 +5,39 @@
       "id": 2,
       "likes": [
         {
-          "postId": 6
-        },
-        {
-          "postId": 9
-        },
-        {
-          "postId": 1
-        }
-      ],
-      "dislikes": [
-        {
           "postId": 9
         },
         {
           "postId": 8
+        }
+      ],
+      "dislikes": [
+        {
+          "postId": 7
         }
       ]
     },
     {
       "email": "b@mail.com",
       "id": 3,
-      "likes": [
-        {
-          "postId": 6
-        },
-        {
-          "postId": 1
-        },
-        {
-          "postId": 9
-        }
-      ],
-      "dislikes": [
-        {
-          "postId": 4
-        }
-      ]
+      "likes": [],
+      "dislikes": []
     },
     {
       "email": "k@mail.com",
       "id": 4,
       "likes": [
         {
-          "postId": 10
-        },
-        {
           "postId": 1
         },
         {
-          "postId": 3
+          "postId": 8
+        },
+        {
+          "postId": 10
         }
       ],
-      "dislikes": [
-        {
-          "postId": 3
-        }
-      ]
+      "dislikes": []
     },
     {
       "email": "p@mail.com",
@@ -82,7 +58,7 @@
       "title": "Heelo",
       "content": "hi..",
       "id": 1,
-      "likeCount": 0,
+      "likeCount": 1,
       "dislikeCount": 0
     },
     {
@@ -105,7 +81,9 @@
       "userId": 4,
       "title": "google",
       "content": "dude",
-      "id": 6
+      "id": 6,
+      "likeCount": 0,
+      "dislikeCount": 0
     },
     {
       "userId": 3,
@@ -113,14 +91,14 @@
       "content": "jkdsajkaj fdlaksjfaskljf akj fakjfdalkj fsakjkj",
       "id": 7,
       "likeCount": 0,
-      "dislikeCount": 0
+      "dislikeCount": 1
     },
     {
       "userId": 2,
       "title": "ka jfdkaj a jkjf.....",
       "content": "kajfkaj akjfdkajflkajdksaj fkajflka jf jaskfjak fjak jfjaf kaj",
       "id": 8,
-      "likeCount": 0,
+      "likeCount": 2,
       "dislikeCount": 0
     },
     {
@@ -128,14 +106,16 @@
       "title": "kel ...",
       "content": "kdajk jajfka jajfajkj aj ",
       "id": 9,
-      "likeCount": 0,
+      "likeCount": 1,
       "dislikeCount": 0
     },
     {
       "userId": 3,
       "title": "Gjdajk",
       "content": "akjfka jas ",
-      "id": 10
+      "id": 10,
+      "likeCount": 1,
+      "dislikeCount": 0
     }
   ]
 }

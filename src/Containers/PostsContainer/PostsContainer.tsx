@@ -6,7 +6,6 @@ import { IPost } from "../../Types";
 import { useState } from "react";
 import NoDataFound from "../../assets/gif/no-result-found.gif";
 import DeletePopup from "../../Components/DeletePopup/DeletePopup";
-import { observer } from "mobx-react-lite";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPosts, fetchUsersByEmail } from "../../utils/functions";
 
@@ -29,10 +28,8 @@ const PostsContainer = (
       queryKey: ["post details"], 
       queryFn: () => fetchPosts(),
     });
-    console.log(postsData?.data, 'pos')
-    postStore.setPost(postsData?.data);
     
-    console.log(postStore.post, 'ss')
+    postStore.setPosts(postsData?.data);
     
 
     let result = data;
@@ -42,6 +39,10 @@ const PostsContainer = (
 
     if (isLoading || isFetching) {
       return <h1>Loading</h1>;
+    }
+
+    if (isError) {
+      return <h1>{error}</h1>;
     }
 
     const handleDelete = (id: number) => {
@@ -60,6 +61,8 @@ const PostsContainer = (
                 id={post.id}
                 title={post.title}
                 content={post.content}
+                likeCount={post.likeCount}
+                dislikeCount={post.dislikeCount}
                 handleDelete={handleDelete}
               />
             ))

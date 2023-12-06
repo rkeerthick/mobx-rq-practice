@@ -1,4 +1,3 @@
-import React from "react";
 import { ITextarea } from "../../Types";
 
 const Input = ({ title, rows, value, onChange, placeholder }: ITextarea) => {
@@ -7,7 +6,7 @@ const Input = ({ title, rows, value, onChange, placeholder }: ITextarea) => {
       <label htmlFor="">{title}</label>
       <textarea
         placeholder={placeholder}
-        rows={rows}
+      rows={rows}
         value={value}
         onChange={onChange}
       />
