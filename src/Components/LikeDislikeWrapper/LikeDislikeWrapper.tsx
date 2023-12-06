@@ -25,7 +25,7 @@ const LikeDislikeWrapper = ({
     rootStore: { loginStore, loginUserStore, postStore },
   } = useStore();
 
-  const userData = loginUserStore?.getUser;
+  const userData = loginUserStore?.user;
   const postDetails = postStore?.post.find((post: any) => post.id === +id);
 
   const updateLikeCountMutation = useMutation({
@@ -47,7 +47,7 @@ const LikeDislikeWrapper = ({
   const updateLikesMutation = useMutation({
     mutationKey: ["update"],
     mutationFn: (data: any) => {
-      const response = updateLikes(loginStore.getUserID, data);
+      const response = updateLikes(loginStore?.userId, data);
       return response;
     },
   });

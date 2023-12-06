@@ -21,7 +21,7 @@ const Posts = () => {
 
   const { data } = useQuery({
     queryKey: ["user details"],
-    queryFn: () => fetchUsersByEmail(loginStore.getLoginUser),
+    queryFn: () => fetchUsersByEmail(loginStore?.loginUser),
   });
   loginStore.setUserID(data?.data[0]?.id);
   let resultData = posts?.data;
@@ -30,7 +30,7 @@ const Posts = () => {
   }
   return (
     <div className="page-container">
-      {loginStore.getLoginUser !== "" && (
+      {loginStore?.loginUser !== "" && (
         <Button
           buttonType="button"
           type="add-post-btn"

@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable } from "mobx";
+import { action, makeObservable, observable } from "mobx";
 import { IRootStore, loginUser } from "../Types/index";
 import { makePersistable } from "mobx-persist-store";
 
@@ -15,7 +15,8 @@ export class LoginUserStore {
   constructor(rootStore: IRootStore) {
       makeObservable(this, {
         user: observable,
-      getUser: computed,
+        setUser: action,
+        clearData: action
     });
 
     makePersistable(this, {
@@ -30,7 +31,7 @@ export class LoginUserStore {
     this.user = userData;
   }
 
-  get getUser() {
-    return this.user;
+  clearData() {
+    localStorage.clear();
   }
 }

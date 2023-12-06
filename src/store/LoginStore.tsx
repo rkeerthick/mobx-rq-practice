@@ -7,15 +7,17 @@ export class LoginStore {
   userId: number = 0;
   loginUser: string = "";
   rootStore: IRootStore;
-  data: boolean = false;
 
   constructor(rootStore: IRootStore) {
     makeObservable(this, {
       isMyPost: observable,
       userId: observable,
       loginUser: observable,
+      setIsMyPost: action,
+      setUserID: action,
+      setLoginUser: action,
       setLogoutUser: action,
-      getLoginUser: computed,
+      clearData: action,
     });
 
     makePersistable(this, {
@@ -42,18 +44,9 @@ export class LoginStore {
     this.loginUser = "";
     this.userId = 0;
     this.isMyPost = false;
+  }
+
+  clearData() {
     localStorage.clear();
-  }
-
-  get getLoginUser() {
-    return this.loginUser;
-  }
-
-  get getUserID() {
-    return this.userId;
-  }
-
-  get getIsMyPost() {
-    return this.isMyPost;
   }
 }

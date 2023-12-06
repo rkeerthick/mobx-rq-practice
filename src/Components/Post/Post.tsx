@@ -14,7 +14,7 @@ const Post = ({ id, title, content, likeCount, dislikeCount, handleDelete }: pos
   const temp = postStore?.post.map((post: any) => post);
   console.log(temp, 'temp')
 
-  const userData = loginUserStore?.getUser;
+  const userData = loginUserStore?.user;
   const isliked = userData.likes.some((data: any) => id === data.postId);
   const isdisliked = userData.dislikes.some((data: any) => id === data.postId);
 
@@ -30,7 +30,7 @@ const Post = ({ id, title, content, likeCount, dislikeCount, handleDelete }: pos
     <div className="post">
       <div className="post__container">
         <div className="post__container__header">
-          {loginStore?.getIsMyPost && loginStore?.getUserID > 0 && (
+          {loginStore?.isMyPost && loginStore?.userId > 0 && (
             <>
               <Button
                 value="Edit"

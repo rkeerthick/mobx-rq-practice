@@ -47,8 +47,22 @@
     },
     {
       "email": "m@mail.com",
-      "likes": [],
-      "dislikes": [],
+      "likes": [
+        {
+          "postId": 9
+        },
+        {
+          "postId": 8
+        },
+        {
+          "postId": 11
+        }
+      ],
+      "dislikes": [
+        {
+          "postId": 4
+        }
+      ],
       "id": 6
     }
   ],
@@ -56,10 +70,10 @@
     {
       "userId": 2,
       "title": "Heelo",
-      "content": "hi..",
-      "id": 1,
-      "likeCount": 1,
-      "dislikeCount": 0
+      "content": "hi",
+      "likeCount": 0,
+      "dislikeCount": 0,
+      "id": 1
     },
     {
       "userId": 3,
@@ -75,7 +89,7 @@
       "content": "kasjfk jfdkaj akl;fj afj askljfd aklj ",
       "id": 4,
       "likeCount": 0,
-      "dislikeCount": 0
+      "dislikeCount": 1
     },
     {
       "userId": 4,
@@ -98,7 +112,7 @@
       "title": "ka jfdkaj a jkjf.....",
       "content": "kajfkaj akjfdkajflkajdksaj fkajflka jf jaskfjak fjak jfjaf kaj",
       "id": 8,
-      "likeCount": 2,
+      "likeCount": 3,
       "dislikeCount": 0
     },
     {
@@ -106,7 +120,7 @@
       "title": "kel ...",
       "content": "kdajk jajfka jajfajkj aj ",
       "id": 9,
-      "likeCount": 1,
+      "likeCount": 2,
       "dislikeCount": 0
     },
     {
@@ -114,6 +128,14 @@
       "title": "Gjdajk",
       "content": "akjfka jas ",
       "id": 10,
+      "likeCount": 1,
+      "dislikeCount": 0
+    },
+    {
+      "userId": 6,
+      "title": "my first post (6)",
+      "content": "Hello all...",
+      "id": 11,
       "likeCount": 1,
       "dislikeCount": 0
     }

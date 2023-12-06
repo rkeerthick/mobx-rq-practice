@@ -11,7 +11,7 @@ const Routing = observer(() => {
     rootStore: { loginStore },
   } = useStore();
 
-  const userID = loginStore?.getUserID;
+  const userID = loginStore?.userId;
   return (
     <Routes>
       <Route path="/" element={<Posts />} />

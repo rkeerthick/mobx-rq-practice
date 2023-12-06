@@ -1,4 +1,4 @@
-import { computed, makeObservable, observable } from "mobx";
+import { action, computed, makeObservable, observable } from "mobx";
 import { IRootStore } from "../Types/index";
 import { Datum } from "../Types";
 
@@ -9,7 +9,8 @@ export class PostsStore {
   constructor(rootStore: IRootStore) {
     makeObservable(this, {
       posts: observable,
-      getPosts: computed,
+      setPosts: action,
+      clearData: action,
     });
     this.rootStore = rootStore;
   }
@@ -18,7 +19,7 @@ export class PostsStore {
     this.posts = posts;
   }
 
-  get getPosts() {
-    return this.posts;
+  clearData() {
+    localStorage.clear();
   }
 }

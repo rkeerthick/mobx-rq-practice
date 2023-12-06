@@ -6,9 +6,13 @@ import { observer } from "mobx-react-lite";
 const Sidebar = observer(() => {
   const navigate = useNavigate();
   const {
-    rootStore: { loginStore },
+    rootStore: { loginStore, postStore, postsStore, loginUserStore },
   } = useStore();
   const handleSignOut = () => {
+    debugger
+    localStorage.removeItem("LoginStore");
+    localStorage.removeItem("LoginUserStore");
+    localStorage.removeItem("Post Store");
     loginStore.setLogoutUser();
     navigate("/login");
   };
@@ -24,15 +28,15 @@ const Sidebar = observer(() => {
           <div onClick={handleMyPost}>My Posts</div>
         </div>
         <div className="sidebar__container__imp-list">
-          {loginStore?.getLoginUser === "" && (
+          {loginStore?.loginUser === "" && (
             <>
               <div onClick={() => navigate("/signup")}>Sign Up</div>
               <div onClick={() => navigate("/login")}>Sign In</div>
             </>
           )}
-          {loginStore?.getLoginUser !== "" && (
+          {loginStore?.loginUser !== "" && (
             <>
-              <div>Hii, {loginStore.getUserID}</div>
+              <div>Hii, {loginStore?.userId}</div>
               <div onClick={handleSignOut}>Sign Out</div>
             </>
           )}

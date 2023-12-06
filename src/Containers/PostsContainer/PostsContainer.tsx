@@ -8,8 +8,9 @@ import NoDataFound from "../../assets/gif/no-result-found.gif";
 import DeletePopup from "../../Components/DeletePopup/DeletePopup";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPosts, fetchUsersByEmail } from "../../utils/functions";
+import { observer } from "mobx-react-lite";
 
-const PostsContainer = (
+const PostsContainer = observer(
   ({ data, isLoading, isFetching, isError, error }: IPost) => {
     const [isDelete, setIsDelete] = useState(false);
     const [postId, setPostId] = useState(0);
@@ -33,8 +34,8 @@ const PostsContainer = (
     
 
     let result = data;
-    if (loginStore?.getIsMyPost && loginStore?.getUserID > 0) {
-      result = data?.filter((d: any) => d.userId === loginStore?.getUserID);
+    if (loginStore?.isMyPost && loginStore?.userId > 0) {
+      result = data?.filter((d: any) => d.userId === loginStore?.userId);
     }
 
     if (isLoading || isFetching) {
@@ -54,7 +55,7 @@ const PostsContainer = (
       <>
         <div className="posts-container">
           {data.length !== 0 &&
-          (result.length > 0 || loginStore.getUserID === undefined) ? (
+          (result.length > 0 || loginStore?.userId === undefined) ? (
             map(result, (post) => (
               <Post
                 key={post.id}

@@ -9,7 +9,9 @@ export class PostStore {
   constructor(rootStore: IRootStore) {
     makeObservable(this, {
       post: observable,
+      setPosts: action,
       setPost: action,
+      clearData: action,
     });
 
     makePersistable(this, {
@@ -26,5 +28,9 @@ export class PostStore {
 
   setPost(id: number, data: any) {
     this.post[id] = data;
+  }
+
+  clearData() {
+    localStorage.clear();
   }
 }

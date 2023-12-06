@@ -13,8 +13,8 @@ const Form = observer(() => {
     rootStore: { loginStore },
   } = useStore();
 
-  const email = loginStore?.getLoginUser
-  const userID = loginStore?.getUserID
+  const email = loginStore?.loginUser
+  const userID = loginStore?.userId
 
   const [path, setPath] = useState("");
   const [id, setId] = useState<string | undefined>(undefined);

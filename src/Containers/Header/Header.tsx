@@ -25,7 +25,7 @@ const Header = () => {
 
   const { data } = useQuery({
     queryKey: ["user details"],
-    queryFn: () => fetchUsersByEmail(loginStore.getLoginUser),
+    queryFn: () => fetchUsersByEmail(loginStore?.loginUser),
   });
 
   const loggedInUserID = data?.data[0]?.id;

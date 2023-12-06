@@ -90,6 +90,8 @@ const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
       userId: userID,
       title: title,
       content: content,
+      likeCount: 0,
+      dislikeCount: 0,
     } as IData;
     if (paramValue > 0) {
       handleUpdateItem(data);
