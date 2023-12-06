@@ -26,16 +26,29 @@ const PostsContainer = observer(
     loginUserStore.setUser(userData?.data[0]);
 
     const { data: postsData } = useQuery({
-      queryKey: ["post details"], 
+      queryKey: ["post details"],
       queryFn: () => fetchPosts(),
     });
-    
+
     postStore.setPosts(postsData?.data);
-    
 
     let result = data;
-    if (loginStore?.isMyPost && loginStore?.userId > 0) {
+    if (loginUserStore?.isMyPost === "my posts" && loginStore?.userId > 0) {
       result = data?.filter((d: any) => d.userId === loginStore?.userId);
+    }
+
+    if (loginUserStore?.isMyPost === "liked posts" && loginStore?.userId > 0) {
+      const dummy = userData?.data[0].likes.map(
+        (likedPost: any) => likedPost.postId
+      );
+      result = data?.filter((d: any) => dummy.includes(d.id));
+    }
+
+    if (loginUserStore?.isMyPost === "disliked posts" && loginStore?.userId > 0) {
+      const dummy = userData?.data[0].dislikes.map(
+        (dislikedPost: any) => dislikedPost.postId
+      );
+      result = data?.filter((d: any) => dummy.includes(d.id));
     }
 
     if (isLoading || isFetching) {

@@ -11,14 +11,17 @@ import { useState } from "react";
 import { setState } from "../../Constant/functions";
 import { Datum, likeDislikeProps } from "../../Types";
 import { PostStore } from "../../store/PostStore";
+import { useQueryClient } from "@tanstack/react-query";
+import { observer } from "mobx-react-lite";
 
-const LikeDislikeWrapper = ({
+const LikeDislikeWrapper = observer(({
   id,
   isLiked,
   isDisliked,
   likeCount,
   dislikeCount,
 }: likeDislikeProps) => {
+  const queryClient = useQueryClient();
   const [like, setLike] = useState(isLiked);
   const [dislike, setDislike] = useState(isDisliked);
   const {
@@ -123,6 +126,6 @@ const LikeDislikeWrapper = ({
       </div>
     </div>
   );
-};
+});
 
 export default LikeDislikeWrapper;

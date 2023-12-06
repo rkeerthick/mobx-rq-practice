@@ -4,6 +4,7 @@ import { makePersistable } from "mobx-persist-store";
 
 
 export class LoginUserStore {
+  isMyPost: string = "all posts";
   user: loginUser = {
     id: 0,
     email: "",
@@ -13,10 +14,12 @@ export class LoginUserStore {
   rootStore: IRootStore;
 
   constructor(rootStore: IRootStore) {
-      makeObservable(this, {
-        user: observable,
-        setUser: action,
-        clearData: action
+    makeObservable(this, {
+      user: observable,
+      isMyPost: observable,
+      setIsMyPost: action,
+      setUser: action,
+      clearData: action,
     });
 
     makePersistable(this, {
@@ -25,6 +28,10 @@ export class LoginUserStore {
       storage: window.localStorage,
     });
     this.rootStore = rootStore;
+  }
+
+  setIsMyPost(data: string) {
+    this.isMyPost = data;
   }
 
   setUser(userData: loginUser) {

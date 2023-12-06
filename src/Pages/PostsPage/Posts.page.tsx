@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 const Posts = () => {
   const navigate = useNavigate();
   const { data: posts, isLoading, isFetching, isError, error } = UseGetPosts();
-  // console.log()
   const [searchText, setSearchText] = useState("");
   const {
     rootStore: { loginStore },

@@ -9,13 +9,12 @@
         },
         {
           "postId": 8
+        },
+        {
+          "postId": 3
         }
       ],
-      "dislikes": [
-        {
-          "postId": 7
-        }
-      ]
+      "dislikes": []
     },
     {
       "email": "b@mail.com",
@@ -80,7 +79,7 @@
       "title": "kajdflka fdlkjkda klajdfkla jl",
       "content": "aksfj daklj lkasjflakjfaklj fdlkj alkfasl fjdaklj ",
       "id": 3,
-      "likeCount": 0,
+      "likeCount": 1,
       "dislikeCount": 0
     },
     {
@@ -120,7 +119,7 @@
       "title": "kel ...",
       "content": "kdajk jajfka jajfajkj aj ",
       "id": 9,
-      "likeCount": 2,
+      "likeCount": 1,
       "dislikeCount": 0
     },
     {

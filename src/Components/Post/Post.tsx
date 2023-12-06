@@ -4,8 +4,9 @@ import Button from "../Button/Button";
 import { post } from "../../Types";
 import useStore from "../../Hooks/UseStore";
 import LikeDislikeWrapper from "../LikeDislikeWrapper/LikeDislikeWrapper";
+import { observer } from "mobx-react-lite";
 
-const Post = ({ id, title, content, likeCount, dislikeCount, handleDelete }: post) => {
+const Post = observer(({ id, title, content, likeCount, dislikeCount, handleDelete }: post) => {
   const navigate = useNavigate();
   const {
     rootStore: { loginStore, loginUserStore, postStore },
@@ -30,7 +31,7 @@ const Post = ({ id, title, content, likeCount, dislikeCount, handleDelete }: pos
     <div className="post">
       <div className="post__container">
         <div className="post__container__header">
-          {loginStore?.isMyPost && loginStore?.userId > 0 && (
+          {loginUserStore?.isMyPost === "my posts" && loginStore?.userId > 0 && (
             <>
               <Button
                 value="Edit"
@@ -54,6 +55,6 @@ const Post = ({ id, title, content, likeCount, dislikeCount, handleDelete }: pos
       </div>
     </div>
   );
-};
+});
 
 export default Post;
