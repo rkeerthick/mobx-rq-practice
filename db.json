@@ -81,18 +81,18 @@
     {
       "userId": 3,
       "title": "kajdflka fdlkjkda klajdfkla jl",
-      "content": "aksfj daklj lkasjflakjfaklj fdlkj alkfasl fjdaklj ",
-      "id": 3,
-      "likeCount": 1,
-      "dislikeCount": 0
+      "content": "aksfj daklj lkasjflakjfaklj fdlkj alkfasl fjdaklj ....",
+      "likeCount": 0,
+      "dislikeCount": 0,
+      "id": 3
     },
     {
       "userId": 3,
-      "title": "kajfd k ajk",
+      "title": "kajfd k ajk sure",
       "content": "kasjfk jfdkaj akl;fj afj askljfd aklj ",
-      "id": 4,
-      "likeCount": 1,
-      "dislikeCount": 1
+      "likeCount": 0,
+      "dislikeCount": 0,
+      "id": 4
     },
     {
       "userId": 4,
@@ -104,11 +104,11 @@
     },
     {
       "userId": 3,
-      "title": "jks akjdakf jdak kajdka",
+      "title": "jks akjdakf jdak kajdka...",
       "content": "jkdsajkaj fdlaksjfaskljf akj fakjfdalkj fsakjkj",
-      "id": 7,
       "likeCount": 0,
-      "dislikeCount": 1
+      "dislikeCount": 0,
+      "id": 7
     },
     {
       "userId": 2,

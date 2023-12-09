@@ -10,11 +10,19 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchPosts, fetchUsersByEmail } from "../../utils/functions";
 import { observer } from "mobx-react-lite";
 import Modal from "../../Components/Modal/Modal";
+import EditPopup from "../../Components/Edit Popup/EditPopup";
+import { setState } from "../../Constant/functions";
+import { useNavigate } from "react-router-dom";
 
 const PostsContainer = observer(
   ({ data, isLoading, isFetching, isError, error }: IPost) => {
-    const [isDelete, setIsDelete] = useState(false);
-    const [postId, setPostId] = useState(0);
+    const [isDelete, setIsDelete] = useState<boolean>(false);
+    const [isEdit, setIsEdit] = useState<boolean>(false);
+    const [postId, setPostId] = useState<number>(0);
+    const [editPostId, setEditPostId] = useState<string>('');
+
+    const navigate = useNavigate();
+
     const {
       rootStore: { postsStore, loginStore, loginUserStore, postStore },
     } = useStore();
@@ -63,13 +71,26 @@ const PostsContainer = observer(
       return <h1>{error}</h1>;
     }
 
+    const cancelEdit = () => {
+      setState(setIsEdit, !isEdit);
+    };
+
+    const handleEdit = (id: string) => {
+      setState(setIsEdit, !isEdit);
+      setState(setEditPostId, id);
+    };
+
+    const acceptEdit = () => {
+
+      navigate(`/addpost/${editPostId}`);
+    };
+
     const handleCancel = (): void => {
       setIsDelete(false);
     };
-    console.log(isDelete, 'delete');
 
     const handleDelete = (id: number): void => {
-      setIsDelete(prev => !prev);
+      setIsDelete((prev) => !prev);
       setPostId(id);
     };
 
@@ -87,6 +108,7 @@ const PostsContainer = observer(
                 likeCount={post.likeCount}
                 dislikeCount={post.dislikeCount}
                 handleDelete={handleDelete}
+                handleEdit={handleEdit}
               />
             ))
           ) : (
@@ -99,6 +121,9 @@ const PostsContainer = observer(
             cancelDelete={handleCancel}
             handleDelete={handleDelete}
           />
+        </Modal>
+        <Modal isOpen={isEdit} type="warning">
+          <EditPopup cancelEdit={cancelEdit} acceptEdit={acceptEdit} />
         </Modal>
       </>
     );

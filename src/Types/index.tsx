@@ -58,6 +58,7 @@ export interface post {
   likeCount: number;
   dislikeCount: number;
   handleDelete?: any;
+  handleEdit: any;
 }
 
 export interface AddUpdatePost {
@@ -97,13 +98,18 @@ export interface likeDislikeProps {
 }
 
 export interface modalProps {
-  type: "danger" | "warning"
+  type: "danger" | "warning";
   isOpen: boolean;
   children: JSX.Element;
 }
 
 export interface deletePopupProps {
   id: number;
-  cancelDelete: any
-  handleDelete: any
+  cancelDelete: any;
+  handleDelete: any;
+}
+
+export interface editPopupProps {
+  cancelEdit: any;
+  acceptEdit: any;
 }
