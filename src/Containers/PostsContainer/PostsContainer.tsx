@@ -9,6 +9,7 @@ import DeletePopup from "../../Components/DeletePopup/DeletePopup";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPosts, fetchUsersByEmail } from "../../utils/functions";
 import { observer } from "mobx-react-lite";
+import Modal from "../../Components/Modal/Modal";
 
 const PostsContainer = observer(
   ({ data, isLoading, isFetching, isError, error }: IPost) => {
@@ -44,7 +45,10 @@ const PostsContainer = observer(
       result = data?.filter((d: any) => dummy.includes(d.id));
     }
 
-    if (loginUserStore?.isMyPost === "disliked posts" && loginStore?.userId > 0) {
+    if (
+      loginUserStore?.isMyPost === "disliked posts" &&
+      loginStore?.userId > 0
+    ) {
       const dummy = userData?.data[0].dislikes.map(
         (dislikedPost: any) => dislikedPost.postId
       );
@@ -59,8 +63,13 @@ const PostsContainer = observer(
       return <h1>{error}</h1>;
     }
 
-    const handleDelete = (id: number) => {
-      setIsDelete((prev) => !prev);
+    const handleCancel = (): void => {
+      setIsDelete(false);
+    };
+    console.log(isDelete, 'delete');
+
+    const handleDelete = (id: number): void => {
+      setIsDelete(prev => !prev);
       setPostId(id);
     };
 
@@ -84,12 +93,13 @@ const PostsContainer = observer(
             <img src={NoDataFound} alt="" />
           )}
         </div>
-        <DeletePopup
-          className="delete-popup"
-          id={postId}
-          isDelete={isDelete}
-          handleDelete={handleDelete}
-        />
+        <Modal isOpen={isDelete} type="danger">
+          <DeletePopup
+            id={postId}
+            cancelDelete={handleCancel}
+            handleDelete={handleDelete}
+          />
+        </Modal>
       </>
     );
   }

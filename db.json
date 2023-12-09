@@ -16,7 +16,14 @@
     {
       "email": "b@mail.com",
       "id": 3,
-      "likes": [],
+      "likes": [
+        {
+          "postId": 3
+        },
+        {
+          "postId": 4
+        }
+      ],
       "dislikes": []
     },
     {
@@ -76,7 +83,7 @@
       "title": "kajdflka fdlkjkda klajdfkla jl",
       "content": "aksfj daklj lkasjflakjfaklj fdlkj alkfasl fjdaklj ",
       "id": 3,
-      "likeCount": 0,
+      "likeCount": 1,
       "dislikeCount": 0
     },
     {
@@ -84,7 +91,7 @@
       "title": "kajfd k ajk",
       "content": "kasjfk jfdkaj akl;fj afj askljfd aklj ",
       "id": 4,
-      "likeCount": 0,
+      "likeCount": 1,
       "dislikeCount": 1
     },
     {
@@ -116,14 +123,6 @@
       "title": "kel ...",
       "content": "kdajk jajfka jajfajkj aj ",
       "id": 9,
-      "likeCount": 1,
-      "dislikeCount": 0
-    },
-    {
-      "userId": 3,
-      "title": "Gjdajk",
-      "content": "akjfka jas ",
-      "id": 10,
       "likeCount": 1,
       "dislikeCount": 0
     },

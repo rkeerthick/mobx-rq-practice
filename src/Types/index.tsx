@@ -97,6 +97,13 @@ export interface likeDislikeProps {
 }
 
 export interface modalProps {
-  isOpen: () => {};
+  type: "danger" | "warning"
+  isOpen: boolean;
   children: JSX.Element;
+}
+
+export interface deletePopupProps {
+  id: number;
+  cancelDelete: any
+  handleDelete: any
 }

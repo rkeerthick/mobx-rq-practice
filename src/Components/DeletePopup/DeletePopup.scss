@@ -1,45 +1,11 @@
 @import "../../Constant/scss/function.scss";
 .delete-popup {
-  width: 87%;
-  height: calc(100vh - 74px);
-  background-color: rgba(black, 0.5);
-
   h2 {
     color: #fff;
-  }
-
-  &__container {
-    @include flex($justify-content: center, $flex-direction: column);
-    position: relative;
-    top: 250px;
-    background-color: #f67878;
-    width: 70%;
-    height: 300px;
-    margin: auto;
-    border-radius: 6px;
-
-    &__cls-btn-wrapper {
-      position: absolute;
-      top: 30px;
-      right: 50px;
-      cursor: pointer;
-
-      .close-btn {
-        font-size: 24px;
-
-        &:hover {
-          color: white;
-        }
-      }
-    }
   }
 
   &__button-wrapper {
     display: flex;
     gap: 20px;
   }
-}
-
-.none {
-  display: none;
 }

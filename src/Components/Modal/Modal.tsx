@@ -1,16 +1,16 @@
-import React from 'react'
-import { createPortal } from 'react-dom'
-import { modalProps } from '../../Types';
-
+import React from "react";
+import { createPortal } from "react-dom";
+import { modalProps } from "../../Types";
 
 import { css } from "@emotion/css";
-const MODAL_STYLES = css({
+const MODAL_STYLES_DANGER = css({
   position: "fixed",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  backgroundColor: "#FFF",
-  padding: "50px",
+  backgroundColor: "#b66f6f",
+  padding: "20px",
+  borderRadius: "8px",
   zIndex: 1000,
 });
 
@@ -24,14 +24,16 @@ const OVERLAY_STYLES = css({
   zIndex: 1000,
 });
 
-const Modal = ({children, isOpen}: modalProps) => {
-    createPortal(
-      <>
-        <div className={OVERLAY_STYLES}></div>
-        <div className={MODAL_STYLES}>{children}</div>
-      </>,
-      document.getElementById("modal")!
-    );
-}
+const Modal = ({ children, isOpen, type }: modalProps) => {
+  return isOpen
+    ? createPortal(
+        <>
+          <div className={OVERLAY_STYLES}></div>
+          <div className={MODAL_STYLES_DANGER}>{children}</div>
+        </>,
+        document.getElementById("modal")!
+      )
+    : null;
+};
 
-export default Modal
+export default Modal;
