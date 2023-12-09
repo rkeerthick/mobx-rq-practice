@@ -9,9 +9,6 @@
         },
         {
           "postId": 8
-        },
-        {
-          "postId": 3
         }
       ],
       "dislikes": []
@@ -79,7 +76,7 @@
       "title": "kajdflka fdlkjkda klajdfkla jl",
       "content": "aksfj daklj lkasjflakjfaklj fdlkj alkfasl fjdaklj ",
       "id": 3,
-      "likeCount": 1,
+      "likeCount": 0,
       "dislikeCount": 0
     },
     {

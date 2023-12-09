@@ -95,3 +95,8 @@ export interface likeDislikeProps {
   likeCount: number;
   dislikeCount: number;
 }
+
+export interface modalProps {
+  isOpen: () => {};
+  children: JSX.Element;
+}

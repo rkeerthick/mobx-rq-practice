@@ -1,3 +1,4 @@
+import "./PostsPage.scss";
 import PostsContainer from "../../Containers/PostsContainer/PostsContainer";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import UseGetPosts from "../../Hooks/useGetPosts";
@@ -7,7 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchUsersByEmail } from "../../utils/functions";
 import useStore from "../../Hooks/UseStore";
 import Button from "../../Components/Button/Button";
-import "./PostsPage.scss";
 import { useNavigate } from "react-router-dom";
 
 const Posts = () => {
