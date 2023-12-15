@@ -9,7 +9,7 @@ import { updateLikes, updatePost } from "../../utils/functions";
 import useStore from "../../Hooks/UseStore";
 import { useState } from "react";
 import { setState } from "../../Constant/functions";
-import { Datum, likeDislikeProps } from "../../Types";
+import { userContentDetailProps, likeDislikeProps } from "../../Types";
 import { PostStore } from "../../store/PostStore";
 import { useQueryClient } from "@tanstack/react-query";
 import { observer } from "mobx-react-lite";

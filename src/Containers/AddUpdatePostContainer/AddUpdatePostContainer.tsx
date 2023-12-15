@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Button from "../../Components/Button/Button";
 import Input from "../../Components/Input/Input";
 import TextArea from "../../Components/TextArea/TextArea";
-import { AddUpdatePost, IData } from "../../Types";
+import { addUpdatePostProps, dataProps } from "../../Types";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
@@ -16,7 +16,7 @@ import {
 import { v4 as uuid } from "uuid";
 import { setState } from "../../Constant/functions";
 
-const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
+const AddUpdatePostContainer = ({ userID }: addUpdatePostProps) => {
   const queryClient = useQueryClient();
 
   const params = useParams();
@@ -53,12 +53,12 @@ const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
 
   const addMutation = useMutation({
     mutationKey: ["addPost"],
-    mutationFn: (data: IData) => addPost(data),
+    mutationFn: (data: dataProps) => addPost(data),
     onSuccess: () =>
       queryClient.invalidateQueries({ queryKey: ["unique posts"] }),
   });
 
-  const handleAddItem = async (data: IData) => {
+  const handleAddItem = async (data: dataProps) => {
     try {
       await addMutation.mutateAsync(data);
     } catch (error: any) {
@@ -68,7 +68,7 @@ const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
 
   const updateMutation = useMutation({
     mutationKey: ["update"],
-    mutationFn: (data: IData) => {
+    mutationFn: (data: dataProps) => {
       const response = updatePost(paramValue, data);
       return response;
     },
@@ -76,7 +76,7 @@ const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
       queryClient.invalidateQueries({ queryKey: ["unique posts"] }),
   });
 
-  const handleUpdateItem = async (data: IData) => {
+  const handleUpdateItem = async (data: dataProps) => {
     try {
       await updateMutation.mutateAsync(data);
     } catch (error: any) {
@@ -92,7 +92,7 @@ const AddUpdatePostContainer = ({ userID }: AddUpdatePost) => {
       content: content,
       likeCount: 0,
       dislikeCount: 0,
-    } as IData;
+    } as dataProps;
     if (paramValue > 0) {
       handleUpdateItem(data);
     } else {

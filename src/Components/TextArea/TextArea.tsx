@@ -1,12 +1,18 @@
-import { ITextarea } from "../../Types";
+import { textAreaProps } from "../../Types";
 
-const Input = ({ title, rows, value, onChange, placeholder }: ITextarea) => {
+const Input = ({
+  title,
+  rows,
+  value,
+  onChange,
+  placeholder,
+}: textAreaProps) => {
   return (
     <>
       <label htmlFor="">{title}</label>
       <textarea
         placeholder={placeholder}
-      rows={rows}
+        rows={rows}
         value={value}
         onChange={onChange}
       />

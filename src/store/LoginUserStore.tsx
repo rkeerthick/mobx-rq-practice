@@ -1,19 +1,19 @@
 import { action, makeObservable, observable } from "mobx";
-import { IRootStore, loginUser } from "../Types/index";
+import { rootStoreProps, loginUserProps } from "../Types/index";
 import { makePersistable } from "mobx-persist-store";
 
 
 export class LoginUserStore {
   isMyPost: string = "all posts";
-  user: loginUser = {
+  user: loginUserProps = {
     id: 0,
     email: "",
     likes: [],
     dislikes: [],
   };
-  rootStore: IRootStore;
+  rootStore: rootStoreProps;
 
-  constructor(rootStore: IRootStore) {
+  constructor(rootStore: rootStoreProps) {
     makeObservable(this, {
       user: observable,
       isMyPost: observable,
@@ -34,7 +34,7 @@ export class LoginUserStore {
     this.isMyPost = data;
   }
 
-  setUser(userData: loginUser) {
+  setUser(userData: loginUserProps) {
     this.user = userData;
   }
 

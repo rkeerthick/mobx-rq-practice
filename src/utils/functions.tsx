@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IData, IUser } from "../Types";
+import { dataProps, userProps } from "../Types";
 import { url } from "./urls";
 
 export const fetchPosts = () => {
@@ -7,7 +7,7 @@ export const fetchPosts = () => {
   return response;
 };
 
-export const addPost = (data: IData) => {
+export const addPost = (data: dataProps) => {
   const response = axios.post(url.post.ADDPOST, data);
   return response;
 };
@@ -17,7 +17,7 @@ export const deletePost = (id: number) => {
   return response;
 };
 
-export const updatePost = async (id: number, data: IData) => {
+export const updatePost = async (id: number, data: dataProps) => {
   const response = await axios.put(`${url.put.UPDATEPOST}/${id}`, data);
   return response;
 };
@@ -27,7 +27,7 @@ export const fetchPostByID = (id: number) => {
   return response;
 };
 
-export const addUser = (data: IUser) => {
+export const addUser = (data: userProps) => {
   const response = axios.post(url.post.ADDUSER, data);
   return response;
 };

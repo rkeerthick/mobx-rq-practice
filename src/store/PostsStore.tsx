@@ -1,12 +1,12 @@
 import { action, computed, makeObservable, observable } from "mobx";
-import { IRootStore } from "../Types/index";
-import { Datum } from "../Types";
+import { rootStoreProps } from "../Types/index";
+import { userContentDetailProps } from "../Types";
 
 export class PostsStore {
-  posts: Datum[] = [];
-  rootStore: IRootStore;
+  posts: userContentDetailProps[] = [];
+  rootStore: rootStoreProps;
 
-  constructor(rootStore: IRootStore) {
+  constructor(rootStore: rootStoreProps) {
     makeObservable(this, {
       posts: observable,
       setPosts: action,

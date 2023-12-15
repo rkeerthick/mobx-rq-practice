@@ -2,7 +2,7 @@ import "./PostsContainer.scss";
 import Post from "../../Components/Post/Post";
 import useStore from "../../Hooks/UseStore";
 import { map } from "lodash";
-import { IPost } from "../../Types";
+import { postProps } from "../../Types";
 import { useState } from "react";
 import NoDataFound from "../../assets/gif/no-result-found.gif";
 import DeletePopup from "../../Components/DeletePopup/DeletePopup";
@@ -15,7 +15,7 @@ import { setState } from "../../Constant/functions";
 import { useNavigate } from "react-router-dom";
 
 const PostsContainer = observer(
-  ({ data, isLoading, isFetching, isError, error }: IPost) => {
+  ({ data, isLoading, isFetching, isError, error }: postProps) => {
     const [isDelete, setIsDelete] = useState<boolean>(false);
     const [isEdit, setIsEdit] = useState<boolean>(false);
     const [postId, setPostId] = useState<number>(0);

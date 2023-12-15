@@ -1,7 +1,7 @@
 import './Button.scss'
-import { IButton } from "../../Types";
+import { buttonProps } from "../../Types";
 
-const Button = ({ buttonType, handleClick, value, type }: IButton) => {
+const Button = ({ buttonType, handleClick, value, type }: buttonProps) => {
   return (
     <button className={`${type}`} type={buttonType} onClick={handleClick}>
       {value}

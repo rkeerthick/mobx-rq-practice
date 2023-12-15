@@ -1,18 +1,18 @@
 import { PostsStore } from "../store/PostsStore";
 import { V4Options } from "uuid";
 
-export interface IRootStore {
+export interface rootStoreProps {
   postsStore: PostsStore;
 }
 
-export interface IData {
+export interface dataProps {
   id: V4Options;
   userId: number;
   title: string;
   content: string;
 }
 
-export interface IPost {
+export interface postProps {
   data: any;
   isLoading: boolean;
   isFetching: boolean;
@@ -20,7 +20,7 @@ export interface IPost {
   error: string | undefined;
 }
 
-export interface Datum {
+export interface userContentDetailProps {
   userId: string;
   id: string;
   title: string;
@@ -28,7 +28,7 @@ export interface Datum {
   likeCount: number;
   dislikeCount: number;
 }
-export interface ITextarea {
+export interface textAreaProps {
   title: string;
   rows: number;
   placeholder: string;
@@ -36,7 +36,7 @@ export interface ITextarea {
   onChange: React.ChangeEventHandler<HTMLTextAreaElement> | undefined;
 }
 
-export interface IInput {
+export interface inputProps {
   title?: string;
   type: string;
   placeholder: string;
@@ -44,14 +44,14 @@ export interface IInput {
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
-export interface IButton {
+export interface buttonProps {
   value: string;
   buttonType?: "button" | "submit" | undefined;
   handleClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   type: string;
 }
 
-export interface post {
+export interface postDetailProps {
   id: string;
   title: string;
   content: string;
@@ -61,29 +61,29 @@ export interface post {
   handleEdit: any;
 }
 
-export interface AddUpdatePost {
+export interface addUpdatePostProps {
   userID?: number;
 }
 
-export interface Form {
+export interface formProps {
   formType: string;
 }
 
-export interface IUser {
+export interface userProps {
   email: string;
   likes: object[];
   dislikes: object[];
 }
 
-export interface search {
+export interface searchProps {
   handleSearchText: any;
 }
 
-export interface layout {
+export interface layoutProps {
   children: JSX.Element;
 }
 
-export interface loginUser {
+export interface loginUserProps {
   id: number;
   email: string;
   likes: object[];

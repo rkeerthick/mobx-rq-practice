@@ -1,13 +1,13 @@
 import { action, makeObservable, observable } from "mobx";
-import { IRootStore } from "../Types/index";
+import { rootStoreProps } from "../Types/index";
 import { makePersistable } from "mobx-persist-store";
 
 export class LoginStore {
   userId: number = 0;
   loginUser: string = "";
-  rootStore: IRootStore;
+  rootStore: rootStoreProps;
 
-  constructor(rootStore: IRootStore) {
+  constructor(rootStore: rootStoreProps) {
     makeObservable(this, {
       userId: observable,
       loginUser: observable,

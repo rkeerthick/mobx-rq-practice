@@ -1,6 +1,6 @@
 import "./Post.scss";
 import Button from "../Button/Button";
-import { post } from "../../Types";
+import { postDetailProps } from "../../Types";
 import useStore from "../../Hooks/UseStore";
 import LikeDislikeWrapper from "../LikeDislikeWrapper/LikeDislikeWrapper";
 import { observer } from "mobx-react-lite";
@@ -14,7 +14,7 @@ const Post = observer(
     dislikeCount,
     handleDelete,
     handleEdit,
-  }: post) => {
+  }: postDetailProps) => {
     const {
       rootStore: { loginStore, loginUserStore },
     } = useStore();

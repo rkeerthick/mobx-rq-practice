@@ -2,7 +2,7 @@ import "./FormContainer.scss";
 import { useEffect } from "react";
 import Input from "../../Components/Input/Input";
 import Button from "../../Components/Button/Button";
-import { Form, IUser } from "../../Types";
+import { formProps, userProps } from "../../Types";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { addUser } from "../../utils/functions";
@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import useGetUsers from "../../Hooks/useGetUsers";
 import useStore from "../../Hooks/UseStore";
 
-const FormContainer = ({ formType }: Form) => {
+const FormContainer = ({ formType }: formProps) => {
   const {
     rootStore: { loginStore },
   } = useStore();
@@ -29,7 +29,7 @@ const FormContainer = ({ formType }: Form) => {
   //   setEmail(e.target.value);
   // };
   const addUserMutation = useMutation({
-    mutationFn: (data: IUser) => {
+    mutationFn: (data: userProps) => {
       return addUser(data);
     },
   });
@@ -38,8 +38,8 @@ const FormContainer = ({ formType }: Form) => {
     const data = {
       email: email,
       likes: [],
-      dislikes: []
-    } as IUser;
+      dislikes: [],
+    } as userProps;
     try {
       if (!userAlreadyExist(email, users?.data)) {
         await addUserMutation.mutateAsync(data);
