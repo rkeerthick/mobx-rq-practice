@@ -81,13 +81,16 @@ const PostsContainer = observer(
     };
 
     const acceptEdit = () => {
-
       navigate(`/addpost/${editPostId}`);
     };
 
     const handleCancel = (): void => {
       setIsDelete(false);
     };
+
+    const toggleDelete = () => {
+      setIsDelete(prev => !prev);
+    }
 
     const handleDelete = (id: number): void => {
       setIsDelete((prev) => !prev);
@@ -120,6 +123,7 @@ const PostsContainer = observer(
             id={postId}
             cancelDelete={handleCancel}
             handleDelete={handleDelete}
+            toggleDelete={toggleDelete}
           />
         </Modal>
         <Modal isOpen={isEdit} type="warning">

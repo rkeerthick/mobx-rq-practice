@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 import { deletePopupProps } from "../../Types";
 
 const DeletePopup = observer(
-  ({ cancelDelete, id, handleDelete }: deletePopupProps) => {
+  ({ cancelDelete, id, handleDelete, toggleDelete}: deletePopupProps) => {
     const queryClient = useQueryClient();
 
     const deleteMutation = useMutation({
@@ -21,7 +21,7 @@ const DeletePopup = observer(
       } catch (error: any) {
         console.error("Error adding item:", error.message);
       }
-      handleDelete();
+      toggleDelete();
     };
 
     return (

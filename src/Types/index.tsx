@@ -76,7 +76,7 @@ export interface userProps {
 }
 
 export interface searchProps {
-  handleSearchText: any;
+  handleSearchText: (data: string) => void;
 }
 
 export interface layoutProps {
@@ -105,11 +105,12 @@ export interface modalProps {
 
 export interface deletePopupProps {
   id: number;
-  cancelDelete: any;
-  handleDelete: any;
+  cancelDelete: () => void;
+  toggleDelete: () => void;
+  handleDelete: (id: number) => void;
 }
 
 export interface editPopupProps {
-  cancelEdit: any;
-  acceptEdit: any;
+  cancelEdit: () => void;
+  acceptEdit: () => void;
 }
