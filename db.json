@@ -5,10 +5,7 @@
       "id": 2,
       "likes": [
         {
-          "postId": 9
-        },
-        {
-          "postId": 8
+          "postId": 1
         }
       ],
       "dislikes": []
@@ -18,13 +15,23 @@
       "id": 3,
       "likes": [
         {
-          "postId": 3
+          "postId": "1"
         },
         {
-          "postId": 4
+          "postId": 1
         }
       ],
-      "dislikes": []
+      "dislikes": [
+        {
+          "postId": "4"
+        },
+        {
+          "postId": "1"
+        },
+        {
+          "postId": 9
+        }
+      ]
     },
     {
       "email": "k@mail.com",
@@ -74,8 +81,8 @@
       "userId": 2,
       "title": "Heelo",
       "content": "hi",
-      "likeCount": 0,
-      "dislikeCount": 0,
+      "likeCount": 3,
+      "dislikeCount": 1,
       "id": 1
     },
     {
@@ -91,7 +98,7 @@
       "title": "kajfd k ajk sure",
       "content": "kasjfk jfdkaj akl;fj afj askljfd aklj ",
       "likeCount": 0,
-      "dislikeCount": 0,
+      "dislikeCount": 1,
       "id": 4
     },
     {
@@ -115,8 +122,8 @@
       "title": "kel ...",
       "content": "kdajk jajfka jajfajkj aj ",
       "id": 9,
-      "likeCount": 1,
-      "dislikeCount": 0
+      "likeCount": 0,
+      "dislikeCount": 1
     },
     {
       "userId": 6,

@@ -15,7 +15,7 @@ export class PostsStore {
     this.rootStore = rootStore;
   }
 
-  setPosts(posts: []) {
+  setPosts(posts: userContentDetailProps[]) {
     this.posts = posts;
   }
 

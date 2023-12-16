@@ -22,7 +22,7 @@ export class PostStore {
     this.rootStore = rootStore;
   }
 
-  setPosts(data: any) {
+  setPosts(data: userContentDetailProps[]) {
     this.post = data;
   }
 

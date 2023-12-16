@@ -13,7 +13,7 @@ export interface dataProps {
 }
 
 export interface postProps {
-  data: any;
+  data: userContentDetailProps[];
   isLoading: boolean;
   isFetching: boolean;
   isError: boolean;
@@ -21,8 +21,8 @@ export interface postProps {
 }
 
 export interface userContentDetailProps {
-  userId: string;
-  id: string;
+  userId: number;
+  id: number;
   title: string;
   content: string;
   likeCount: number;
@@ -52,13 +52,13 @@ export interface buttonProps {
 }
 
 export interface postDetailProps {
-  id: string;
+  id: number;
   title: string;
   content: string;
   likeCount: number;
   dislikeCount: number;
-  handleDelete?: any;
-  handleEdit: any;
+  handleDelete?: (id: number) => void;
+  handleEdit: (id: number) => void;
 }
 
 export interface addUpdatePostProps {
@@ -90,7 +90,7 @@ export interface loginUserProps {
   dislikes: object[];
 }
 export interface likeDislikeProps {
-  id: string;
+  id: number;
   isLiked: boolean;
   isDisliked: boolean;
   likeCount: number;
@@ -113,4 +113,12 @@ export interface deletePopupProps {
 export interface editPopupProps {
   cancelEdit: () => void;
   acceptEdit: () => void;
+}
+
+export interface likeProps {
+  postId: number;
+}
+
+export interface dislikeProps {
+  postId: number
 }

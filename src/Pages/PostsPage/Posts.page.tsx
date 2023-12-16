@@ -9,10 +9,12 @@ import { fetchUsersByEmail } from "../../utils/functions";
 import useStore from "../../Hooks/UseStore";
 import Button from "../../Components/Button/Button";
 import { useNavigate } from "react-router-dom";
+import { toJS } from "mobx";
 
 const Posts = () => {
   const navigate = useNavigate();
   const { data: posts, isLoading, isFetching, isError, error } = UseGetPosts();
+  console.log(toJS(posts), 'posts')
   const [searchText, setSearchText] = useState("");
   const {
     rootStore: { loginStore },

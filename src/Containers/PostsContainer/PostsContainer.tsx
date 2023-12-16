@@ -75,7 +75,7 @@ const PostsContainer = observer(
       setState(setIsEdit, !isEdit);
     };
 
-    const handleEdit = (id: string) => {
+    const handleEdit = (id: number) => {
       setState(setIsEdit, !isEdit);
       setState(setEditPostId, id);
     };
@@ -89,11 +89,14 @@ const PostsContainer = observer(
     };
 
     const toggleDelete = () => {
-      setIsDelete(prev => !prev);
+      // setIsDelete(prev => !prev);
+      setState(setIsDelete, !isDelete);
+
     }
 
     const handleDelete = (id: number): void => {
-      setIsDelete((prev) => !prev);
+      // setIsDelete((prev) => !prev);
+      setState(setIsDelete, !isDelete)
       setPostId(id);
     };
 
@@ -105,7 +108,7 @@ const PostsContainer = observer(
             map(result, (post) => (
               <Post
                 key={post.id}
-                id={post.id}
+                id={+post.id}
                 title={post.title}
                 content={post.content}
                 likeCount={post.likeCount}

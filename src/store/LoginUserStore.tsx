@@ -1,7 +1,6 @@
 import { action, makeObservable, observable } from "mobx";
-import { rootStoreProps, loginUserProps } from "../Types/index";
+import { rootStoreProps, loginUserProps, likeProps, dislikeProps } from "../Types/index";
 import { makePersistable } from "mobx-persist-store";
-
 
 export class LoginUserStore {
   isMyPost: string = "all posts";

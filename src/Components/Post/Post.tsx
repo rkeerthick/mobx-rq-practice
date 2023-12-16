@@ -4,6 +4,7 @@ import { postDetailProps } from "../../Types";
 import useStore from "../../Hooks/UseStore";
 import LikeDislikeWrapper from "../LikeDislikeWrapper/LikeDislikeWrapper";
 import { observer } from "mobx-react-lite";
+import { toJS } from "mobx";
 
 const Post = observer(
   ({
@@ -20,16 +21,17 @@ const Post = observer(
     } = useStore();
 
     const userData = loginUserStore?.user;
-    const isliked = userData.likes.some((data: any) => id === data.postId);
+    const isliked = userData.likes.some((data: any) => {  return id === +data.postId });
+    console.log(toJS(userData.likes), isliked, 'like')
     const isdisliked = userData.dislikes.some(
       (data: any) => id === data.postId
     );
 
-    const handleDeletePost = (id: string) => {
-      handleDelete(id);
+    const handleDeletePost = (id: number) => {
+      handleDelete && handleDelete(id);
     };
 
-    const handleEditPost = (id: string) => {
+    const handleEditPost = (id: number) => {
       handleEdit(id);
     };
 
@@ -59,11 +61,11 @@ const Post = observer(
           <h2>{title}</h2>
           <h4>{content}</h4>
           <LikeDislikeWrapper
+            id={id}
             likeCount={likeCount}
             dislikeCount={dislikeCount}
             isDisliked={isdisliked}
             isLiked={isliked}
-            id={id}
           />
         </div>
       </div>
